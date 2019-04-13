@@ -13,7 +13,7 @@ public class ParseAnnotation {
     public void parseAnnotation() {
 
         try {
-            //获取项目路径
+            //获取项目路径下所有的class文件
             /*String url = this.getClass().getResource("/").getPath().substring(1);
             System.out.println(MessageFormat.format("url=[{0}]",url));
             List<String> classes = LoadClass.getClassesList(url);
