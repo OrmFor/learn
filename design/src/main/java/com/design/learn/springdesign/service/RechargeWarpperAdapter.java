@@ -11,14 +11,21 @@ import java.text.MessageFormat;
 **/
 public abstract class RechargeWarpperAdapter implements RechargeService {
 
+    //
+    protected abstract void handleTradeDetailBeforeCreate();
+
     //初始化生成订单详情
     protected void initOrder(String source, String outTradeNo) {
-
+        handleTradeDetailBeforeCreate();
         System.out.println(MessageFormat.format("initOrderStart,orderNo={0},source={1}",outTradeNo,source));
         System.out.println(".....业务处理中....");
         System.out.println("initOrderEnd");
-
+        handleTradeDetailAfterCreate();
 
     }
+
+
+    protected abstract void handleTradeDetailAfterCreate();
+
 
 }

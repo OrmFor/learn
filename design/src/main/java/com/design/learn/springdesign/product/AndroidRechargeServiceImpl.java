@@ -34,4 +34,15 @@ public class AndroidRechargeServiceImpl extends RechargeWarpperAdapter {
 
         return "ok";
     }
+
+    @Override
+    protected void handleTradeDetailBeforeCreate() {
+        System.out.print("Android订单生成前操作");
+    }
+
+    @Override
+    protected void handleTradeDetailAfterCreate() {
+        System.out.print("Android订单生成后操作");
+
+    }
 }
