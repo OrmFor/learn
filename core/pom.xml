@@ -197,7 +197,7 @@
         </dependency>
         <!-- jstl标签 -->
         <dependency>
-            <groupId>javax.servlet</groupId>
+            <groupId>javax.myServlet</groupId>
             <artifactId>jstl</artifactId>
         </dependency>
         <dependency>
@@ -245,7 +245,7 @@
             <artifactId>page</artifactId>
             <version>1.0</version>
         </dependency>-->
-        <!-- Tomcat7 servlet-api -->
+        <!-- Tomcat7 myServlet-api -->
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jsp-api</artifactId>

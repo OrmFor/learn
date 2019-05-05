@@ -45,11 +45,11 @@
         <org.apache.commons-version>3.1</org.apache.commons-version>
         <commons-codec-version>1.6</commons-codec-version>
         <dom4j-version>1.6.1</dom4j-version>
-        <javax.servlet-version>1.2</javax.servlet-version>
+        <javax.myServlet-version>1.2</javax.myServlet-version>
         <aspectjweaver-version>1.6.6</aspectjweaver-version>
         <slf4j-log4j12-version>1.6.6</slf4j-log4j12-version>
         <log4j-version>1.2.16</log4j-version>
-        <javax.servlet-jsp-version>2.0</javax.servlet-jsp-version>
+        <javax.myServlet-jsp-version>2.0</javax.myServlet-jsp-version>
         <cglib-version>2.2.2</cglib-version>
         <slf4j-api-version>1.6.6</slf4j-api-version>
         <jedis-version>2.6.2</jedis-version>
@@ -235,9 +235,9 @@
             </dependency>
             <!-- jstl标签 -->
             <dependency>
-                <groupId>javax.servlet</groupId>
+                <groupId>javax.myServlet</groupId>
                 <artifactId>jstl</artifactId>
-                <version>${javax.servlet-version}</version>
+                <version>${javax.myServlet-version}</version>
             </dependency>
             <dependency>
                 <groupId>taglibs</groupId>
@@ -300,7 +300,7 @@
             <!--page -->
             <!-- <dependency> <groupId>cn.itcast</groupId> <artifactId>page</artifactId>
                 <version>1.0</version> </dependency> -->
-            <!-- Tomcat7 servlet-api -->
+            <!-- Tomcat7 myServlet-api -->
             <dependency>
                 <groupId>org.apache.tomcat</groupId>
                 <artifactId>tomcat-jsp-api</artifactId>
