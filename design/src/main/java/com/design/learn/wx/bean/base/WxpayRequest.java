@@ -1,4 +1,7 @@
-package com.design.learn.wx.config;
+package com.design.learn.wx.bean.base;
 
-public class WxpayRequest {
+public abstract class WxpayRequest<T extends WxpayResponse> {
+
+
+
 }
