@@ -5,7 +5,6 @@
 [WARNING] 'dependencyManagement.dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: commons-collections:commons-collections:jar -> duplicate declaration of version ${commons-collections-version} @ com.learn.test:learn:1.0-SNAPSHOT, D:\demo\learn\pom.xml, line 207, column 25
 [WARNING] 
 [WARNING] Some problems were encountered while building the effective model for com.learn.test:core:jar:1.0-SNAPSHOT
-[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.springframework:spring-web:jar -> duplicate declaration of version (?) @ com.learn.test:core:[unknown-version], D:\demo\learn\core\pom.xml, line 122, column 21
 [WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: commons-collections:commons-collections:jar -> duplicate declaration of version (?) @ com.learn.test:core:[unknown-version], D:\demo\learn\core\pom.xml, line 178, column 21
 [WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: dom4j:dom4j:jar -> duplicate declaration of version (?) @ com.learn.test:core:[unknown-version], D:\demo\learn\core\pom.xml, line 198, column 21
 [WARNING] 
@@ -49,8 +48,18 @@
 [INFO] |  |  +- com.alibaba:fastjson:jar:1.2.8:compile
 [INFO] |  |  +- com.google.guava:guava:jar:19.0:compile
 [INFO] |  |  \- org.apache.commons:commons-collections4:jar:4.1:compile
+[INFO] |  +- org.springframework:spring-core:jar:4.3.18.RELEASE:compile
 [INFO] |  +- org.springframework:spring-context:jar:4.2.4.RELEASE:compile
+[INFO] |  |  +- org.springframework:spring-aop:jar:4.2.4.RELEASE:compile
+[INFO] |  |  |  \- aopalliance:aopalliance:jar:1.0:compile
+[INFO] |  |  +- org.springframework:spring-beans:jar:4.2.4.RELEASE:compile
+[INFO] |  |  \- org.springframework:spring-expression:jar:4.2.4.RELEASE:compile
+[INFO] |  +- org.springframework:spring-web:jar:4.3.18.RELEASE:compile
 [INFO] |  +- org.springframework:spring-orm:jar:4.2.4.RELEASE:compile
+[INFO] |  |  +- org.springframework:spring-jdbc:jar:4.3.18.RELEASE:compile
+[INFO] |  |  \- org.springframework:spring-tx:jar:4.3.18.RELEASE:compile
+[INFO] |  +- org.springframework:spring-webmvc:jar:4.3.18.RELEASE:compile
+[INFO] |  +- org.springframework:spring-context-support:jar:4.3.18.RELEASE:compile
 [INFO] |  +- org.apache.logging.log4j:log4j-core:jar:2.5:compile
 [INFO] |  +- org.apache.logging.log4j:log4j-api:jar:2.5:compile
 [INFO] |  +- org.apache.logging.log4j:log4j-jcl:jar:2.5:compile
@@ -86,19 +95,6 @@
 [INFO] |  \- org.jboss.netty:netty:jar:3.2.5.Final:compile
 [INFO] +- junit:junit:jar:4.12:compile
 [INFO] |  \- org.hamcrest:hamcrest-core:jar:1.3:compile
-[INFO] +- org.springframework:spring-core:jar:4.3.18.RELEASE:compile
-[INFO] +- org.springframework:spring-web:jar:4.3.18.RELEASE:compile
-[INFO] |  +- org.springframework:spring-aop:jar:4.3.18.RELEASE:compile
-[INFO] |  \- org.springframework:spring-beans:jar:4.3.18.RELEASE:compile
-[INFO] +- org.springframework:spring-test:jar:4.3.18.RELEASE:compile
-[INFO] +- org.springframework:spring-aspects:jar:4.3.18.RELEASE:compile
-[INFO] +- org.springframework:spring-context-support:jar:4.3.18.RELEASE:compile
-[INFO] +- org.springframework:spring-webmvc:jar:4.3.18.RELEASE:compile
-[INFO] |  \- org.springframework:spring-expression:jar:4.3.18.RELEASE:compile
-[INFO] +- org.springframework:spring-jdbc:jar:4.3.18.RELEASE:compile
-[INFO] +- org.springframework:spring-tx:jar:4.3.18.RELEASE:compile
-[INFO] +- org.springframework:spring-instrument:jar:4.3.18.RELEASE:compile
-[INFO] +- org.springframework:spring-instrument-tomcat:jar:4.3.18.RELEASE:compile
 [INFO] +- com.fasterxml.jackson.core:jackson-databind:jar:2.8.11.1:compile
 [INFO] |  +- com.fasterxml.jackson.core:jackson-annotations:jar:2.8.0:compile
 [INFO] |  \- com.fasterxml.jackson.core:jackson-core:jar:2.8.10:compile
@@ -152,8 +148,18 @@
 [INFO] |  |  |  +- com.alibaba:fastjson:jar:1.2.8:compile
 [INFO] |  |  |  +- com.google.guava:guava:jar:19.0:compile
 [INFO] |  |  |  \- org.apache.commons:commons-collections4:jar:4.1:compile
+[INFO] |  |  +- org.springframework:spring-core:jar:4.3.18.RELEASE:compile
 [INFO] |  |  +- org.springframework:spring-context:jar:4.2.4.RELEASE:compile
+[INFO] |  |  |  +- org.springframework:spring-aop:jar:4.2.4.RELEASE:compile
+[INFO] |  |  |  |  \- aopalliance:aopalliance:jar:1.0:compile
+[INFO] |  |  |  +- org.springframework:spring-beans:jar:4.2.4.RELEASE:compile
+[INFO] |  |  |  \- org.springframework:spring-expression:jar:4.2.4.RELEASE:compile
+[INFO] |  |  +- org.springframework:spring-web:jar:4.3.18.RELEASE:compile
 [INFO] |  |  +- org.springframework:spring-orm:jar:4.2.4.RELEASE:compile
+[INFO] |  |  |  +- org.springframework:spring-jdbc:jar:4.3.18.RELEASE:compile
+[INFO] |  |  |  \- org.springframework:spring-tx:jar:4.3.18.RELEASE:compile
+[INFO] |  |  +- org.springframework:spring-webmvc:jar:4.3.18.RELEASE:compile
+[INFO] |  |  +- org.springframework:spring-context-support:jar:4.3.18.RELEASE:compile
 [INFO] |  |  +- org.apache.logging.log4j:log4j-core:jar:2.5:compile
 [INFO] |  |  +- org.apache.logging.log4j:log4j-api:jar:2.5:compile
 [INFO] |  |  +- org.apache.logging.log4j:log4j-jcl:jar:2.5:compile
@@ -189,19 +195,6 @@
 [INFO] |  |  \- org.jboss.netty:netty:jar:3.2.5.Final:compile
 [INFO] |  +- junit:junit:jar:4.12:compile
 [INFO] |  |  \- org.hamcrest:hamcrest-core:jar:1.3:compile
-[INFO] |  +- org.springframework:spring-core:jar:4.3.18.RELEASE:compile
-[INFO] |  +- org.springframework:spring-web:jar:4.3.18.RELEASE:compile
-[INFO] |  |  +- org.springframework:spring-aop:jar:4.3.18.RELEASE:compile
-[INFO] |  |  \- org.springframework:spring-beans:jar:4.3.18.RELEASE:compile
-[INFO] |  +- org.springframework:spring-test:jar:4.3.18.RELEASE:compile
-[INFO] |  +- org.springframework:spring-aspects:jar:4.3.18.RELEASE:compile
-[INFO] |  +- org.springframework:spring-context-support:jar:4.3.18.RELEASE:compile
-[INFO] |  +- org.springframework:spring-webmvc:jar:4.3.18.RELEASE:compile
-[INFO] |  |  \- org.springframework:spring-expression:jar:4.3.18.RELEASE:compile
-[INFO] |  +- org.springframework:spring-jdbc:jar:4.3.18.RELEASE:compile
-[INFO] |  +- org.springframework:spring-tx:jar:4.3.18.RELEASE:compile
-[INFO] |  +- org.springframework:spring-instrument:jar:4.3.18.RELEASE:compile
-[INFO] |  +- org.springframework:spring-instrument-tomcat:jar:4.3.18.RELEASE:compile
 [INFO] |  +- com.fasterxml.jackson.core:jackson-databind:jar:2.8.11.1:compile
 [INFO] |  |  +- com.fasterxml.jackson.core:jackson-annotations:jar:2.8.0:compile
 [INFO] |  |  \- com.fasterxml.jackson.core:jackson-core:jar:2.8.10:compile
@@ -230,14 +223,14 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary:
 [INFO] 
-[INFO] learn .............................................. SUCCESS [  0.887 s]
-[INFO] core ............................................... SUCCESS [  0.491 s]
-[INFO] utils .............................................. SUCCESS [  0.002 s]
-[INFO] design ............................................. SUCCESS [  0.063 s]
+[INFO] learn .............................................. SUCCESS [  0.834 s]
+[INFO] core ............................................... SUCCESS [  0.422 s]
+[INFO] utils .............................................. SUCCESS [  0.009 s]
+[INFO] design ............................................. SUCCESS [  0.097 s]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time: 1.872 s
-[INFO] Finished at: 2019-05-21T15:01:14+08:00
+[INFO] Total time: 1.747 s
+[INFO] Finished at: 2019-05-22T14:35:46+08:00
 [INFO] Final Memory: 15M/309M
 [INFO] ------------------------------------------------------------------------

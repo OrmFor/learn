@@ -21,8 +21,12 @@
   *     com.design.learn.tomcatdemo
     
  ## ~~java 微信接口~~   
-    *     com.design.learn.wx  直接入了获取token,只是一个简单的小demo,没有人家开源的写的好，只是自己练练手而已
-     
+  *     com.design.learn.wx  直接入了获取token,只是一个简单的小demo,没有人家开源的写的好，只是自己练练手而已
+   
+ ## java 动态代理
+  *      cglib和JDKProxy区别  cglib继承MthodInterceptor对实现该类的方法有效  JDKProxy实现的是InvocationHandler 并且只对接口有效
+  
+  
      
  ## **新增Spring bean生命周期相关**
     *     com.design.learn.springbean

@@ -1,9 +1,10 @@
 package com.design.learn.basejava.proxy;
 
-import net.sf.cglib.proxy.*;
+import net.sf.cglib.proxy.Enhancer;
+import net.sf.cglib.proxy.MethodInterceptor;
+import net.sf.cglib.proxy.MethodProxy;
 
 import java.lang.reflect.Method;
-import java.util.HashMap;
 
 public class CGLIBProxy {
 

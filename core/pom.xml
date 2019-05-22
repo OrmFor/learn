@@ -99,7 +99,7 @@
             <systemPath>E:\maven\.m2\repository\fastdfs_client\fastdfs_client\1.20\fastdfs_client-1.20.jar</systemPath>
         </dependency>-->
         <!-- with spring -->
-        <dependency>
+<!--        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
         </dependency>
@@ -143,7 +143,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-instrument-tomcat</artifactId>
-        </dependency>
+        </dependency>-->
         <!--Jackson Json处理工具包 -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

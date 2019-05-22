@@ -6,11 +6,10 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 public class Main extends BaseTest {
-    @Autowired
-    private MySpringBeanPostProcessor mySpringBeanPostProcessor;
+  /*  @Autowired
+    private MySpringBeanPostProcessor mySpringBeanPostProcessor;*/
    /* @Autowired
     private MySpringBean mySpringBean;*/
 
