@@ -1,19 +1,18 @@
 package com.design.learn.springbean;
 
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.stereotype.Component;
 
 /**
  * @ClassName: MySpringBean
  * @Description: my spring bean to test
- * @author: daniel.zhao
- * @date: 2018年10月26日 上午10:12:37
+ * @author: wwy
+ * @date: 2019年5月22日 上午10:12:37
  */
 //@Component("MySpringBean")
 public class MySpringBean implements BeanNameAware, BeanFactoryAware,ApplicationContextAware, InitializingBean, BeanClassLoaderAware {

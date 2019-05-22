@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 
 /**
  * @ClassName: MySpringBeanPostProcessor
- * @author: daniel.zhao
- * @date: 2018年10月26日 上午10:40:21
+ * @author: wwy
+ * @date: 2019年5月22日 上午10:12:37
  */
 @Component
 public class MySpringBeanPostProcessor implements BeanPostProcessor {
