@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinmimoney.web.p2pnew.dao.InsurancePolicyMapper" >
+  <resultMap id="associationMap" type="com.yinmimoney.web.p2pnew.pojo.InsurancePolicy" >
+    
+  </resultMap>
+  <sql id="map_params_where_condition_ext" >
+	<if test="extConditions != null">
+		<!-- 扩展条件 -->
+	</if>
+  </sql>
+    <select id="getOKListByUserCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+         SELECT <include refid="Base_Column_List"/> FROM insurance_policy WHERE user_code=#{userCode} AND policy_time!=NULL
+    </select>
+
+    <select id="getTransactionFlowList" resultType="com.yinmimoney.web.p2pnew.dto.base.TranactionFlowDto" parameterType="java.util.Map">
+        SELECT tb1.policyNo policyNo,tb1.policyFee policyFee,tb1.productName productName,tb1.insuredPersonName insuredPersonName,tb1.planCode planCode,
+        tb1.planName planName,tb1.policyTime policyTime,tb1.realName realName,tb1.mobilePhone mobilePhone,tb1.userCode
+        userCode,ipr.company_code companyCode
+        FROM insurance_product ipr,
+        (SELECT ip.policy_no policyNo,ip.policy_fee policyFee,ip.product_name productName,ip.product_code productCode
+        ,ip.insured_person_code insuredPersonCode,ip.insured_person_name insuredPersonName,ip.plan_code planCode,
+        ip.plan_name planName,ip.policy_time policyTime,u.real_name realName,u.mobile_phone mobilePhone,u.user_code
+        userCode
+        FROM insurance_policy ip,user u WHERE ip.user_code=u.user_code
+        <if test="productName!=null">
+            AND ip.product_name=#{productName}
+        </if>
+        <if test="insuredPersonName!=null">
+            AND ip.insured_person_name=#{insuredPersonName}
+        </if>
+        <if test="startTime!=null">
+            AND date(ip.policy_time) <![CDATA[ >= ]]> date(#{startTime})
+        </if>
+        <if test="endTime!=null">
+            AND date(ip.policy_time) <![CDATA[ < ]]> date(#{endTime})
+        </if>
+        <if test="realName!=null">
+            AND u.real_name=#{realName}
+        </if>
+        <if test="mobilePhone!=null">
+            AND u.mobile_phone=#{mobilePhone}
+        </if>
+        <if test="userCode!=null">
+            AND u.user_code=#{userCode}
+        </if>) tb1 WHERE ipr.product_code=tb1.productCode
+        <if test="companyCode!=null">
+            AND ipr.company_code=#{companyCode}
+        </if>
+        <if test="pageBeginIndex!=null and pageSize!=null">
+            limit #{pageBeginIndex},#{pageSize}
+        </if>
+    </select>
+    <select id="getTransactionFlowCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+        SELECT COUNT(1)
+        FROM insurance_product ipr,
+        (SELECT ip.policy_no policyNo,ip.policy_fee policyFee,ip.product_name productName,ip.product_code productCode
+        ,ip.insured_person_code insuredPersonCode,ip.insured_person_name insuredPersonName,ip.plan_code planCode,
+        ip.plan_name planName,ip.policy_time policyTime,u.real_name realName,u.mobile_phone mobilePhone,u.user_code
+        userCode
+        FROM insurance_policy ip,user u WHERE ip.user_code=u.user_code
+        <if test="productName!=null">
+            AND ip.product_name=#{productName}
+        </if>
+        <if test="insuredPersonName!=null">
+            AND ip.insured_person_name=#{insuredPersonName}
+        </if>
+        <if test="startTime!=null">
+            AND date(ip.policy_time) <![CDATA[ >= ]]> date(#{startTime})
+        </if>
+        <if test="endTime!=null">
+            AND date(ip.policy_time) <![CDATA[ < ]]> date(#{endTime})
+        </if>
+        <if test="realName!=null">
+            AND u.real_name=#{realName}
+        </if>
+        <if test="mobilePhone!=null">
+            AND u.mobile_phone=#{mobilePhone}
+        </if>
+        <if test="userCode!=null">
+            AND u.user_code=#{userCode}
+        </if>) tb1 WHERE ipr.product_code=tb1.productCode
+        <if test="companyCode!=null">
+            AND ipr.company_code=#{companyCode}
+        </if>
+    </select>
+
+    <select id="dataLookup" resultType="java.util.HashMap">
+        SELECT '今日成交额' AS itemName, IFNULL(SUM(ip.policy_fee),0.00) AS number FROM insurance_policy ip WHERE  TO_DAYS(ip.policy_time)=TO_DAYS(NOW())
+        UNION ALL
+        SELECT '今日订单' AS itemName,IFNULL(COUNT(1),0) AS number FROM insurance_policy ip2 WHERE  TO_DAYS(ip2.order_time)=TO_DAYS(NOW())
+        UNION ALL
+        SELECT '今日新增用户' AS itemName,IFNULL(COUNT(1),0) AS number FROM user u WHERE TO_DAYS(u.register_time)=TO_DAYS(NOW())
+        UNION ALL
+        SELECT '历史成交额' AS itemName,IFNULL(SUM(ip3.policy_fee),0.00) AS number FROM insurance_policy ip3 WHERE  TO_DAYS(ip3.policy_time)<![CDATA[ <= ]]>TO_DAYS(NOW())
+        UNION ALL
+        SELECT '用户总数' AS itemName,IFNULL(COUNT(1),0) AS number FROM user u2
+    </select>
+    
+    <select id="dayTransaction" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT IFNULL(SUM(ip.policy_fee),0.00)as 'money',IFNULL(COUNT(1),0)as 'count',DATE_FORMAT(ip.policy_time,#{dateFormat}) as 'time'
+        FROM insurance_policy ip
+        WHERE  date(ip.policy_time) <![CDATA[ >= ]]> date(#{startTime})
+        AND date(ip.policy_time) <![CDATA[ <= ]]> date(#{endTime})
+        <if test="productCode!=null">
+            AND ip.product_code=#{productCode}
+        </if>
+        GROUP BY DATE_FORMAT(ip.policy_time,#{dateFormat})
+    </select>
+
+    <select id="businessAnalyze" parameterType="java.util.Map" resultType="java.util.Map">
+         SELECT tb3.productCode productCode,tb3.productName productName,tb3.totalFee totalFee,tb3.count count FROM
+        (SELECT tb2.productCode productCode,tb2.productName productName,tb2.companyCode companyCode,IFNULL(SUM(tb2.policyFee),0) AS 'totalFee',IFNULL(COUNT(tb2.policyFee),0) as 'count' FROM
+        (SELECT ipr.product_code productCode,ipr.product_name productName,tb1.policyFee policyFee,ipr.company_code
+        companyCode FROM insurance_product ipr LEFT JOIN
+        (SELECT ip.product_code productCode,ip.product_name productName,ip.policy_fee policyFee FROM  insurance_policy ip
+        WHERE ip.policy_time!='') tb1 ON ipr.product_code=tb1.productCode)tb2
+        GROUP BY tb2.productCode) tb3
+        <trim prefix="WHERE" prefixOverrides="AND">
+             <if test="productName!=null">
+                 AND tb3.productName=#{productName}
+             </if>
+             <if test="companyCode!=null">
+                 AND tb3.companyCode=#{companyCode}
+            </if>
+        </trim>
+    </select>
+    <select id="consumerInYear" resultType="java.util.Map">
+        SELECT t2.moneyType as moneyType,COUNT(t2.moneyType) AS count FROM
+        (SELECT
+        CASE
+        WHEN t1.money <![CDATA[ < ]]> 100 THEN '低于100元'
+        WHEN t1.money <![CDATA[ <= ]]> 500 THEN '100-500元'
+        WHEN t1.money <![CDATA[ <= ]]> 1000 THEN '501-1000元'
+        WHEN t1.money <![CDATA[ <= ]]> 3000 THEN '1001-3000元'
+        ELSE '大于3000元'
+        END AS moneyType FROM
+        (SELECT u.user_code userCode,IFNULL(SUM(ip.policy_fee),0) money FROM `user` u LEFT JOIN insurance_policy ip
+        ON u.user_code=ip.user_code AND ip.policy_time <![CDATA[ < ]]> CURDATE() AND ip.policy_time <![CDATA[ >= ]]> TIMESTAMPADD(YEAR,-1,CURDATE()) GROUP BY u.user_code) t1) t2 GROUP BY t2.moneyType
+    </select>
+</mapper>

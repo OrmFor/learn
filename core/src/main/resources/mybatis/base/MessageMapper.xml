@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinmimoney.web.p2pnew.dao.MessageMapper" >
+  <resultMap id="BaseResultMap" type="com.yinmimoney.web.p2pnew.pojo.Message" extends="associationMap">
+	<id column="id" property="id" />
+	<result column="sent_user" property="sentUser" />
+	<result column="receive_user" property="receiveUser" />
+	<result column="title" property="title" />
+	<result column="content" property="content" />
+	<result column="status" property="status" />
+	<result column="del_type" property="delType" />
+	<result column="add_time" property="addTime" />
+	<result column="add_ip" property="addIp" />
+	<result column="nid" property="nid" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+		`id`
+		,`sent_user`
+		,`receive_user`
+		,`title`
+		,`content`
+		,`status`
+		,`del_type`
+		,`add_time`
+		,`add_ip`
+		,`nid`
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM `message`
+    WHERE `id` = #{id}
+  </select>
+  <select id="getByCondition" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM `message`
+    <include refid="map_params_where_condition" />
+    <if test="orderBy == null" >
+      ORDER BY `id` DESC
+    </if>
+    <if test="orderBy != null and orderBy != 'no'" >
+      ORDER BY ${orderBy}
+    </if>
+	LIMIT 1
+  </select>
+  <select id="aggregate" parameterType="java.util.Map" resultType="java.util.Map">
+    SELECT ${aggregate_sql} FROM `message`
+    <include refid="map_params_where_condition" />
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    DELETE FROM `message`
+    WHERE `id` = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.yinmimoney.web.p2pnew.pojo.Message" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO `message` (
+	  `sent_user`
+	  ,`receive_user`
+	  ,`title`
+	  ,`content`
+	  ,`status`
+	  ,`del_type`
+	  ,`add_time`
+	  ,`add_ip`
+	  ,`nid`
+      )
+    VALUES (
+		  
+		  #{sentUser}
+		  ,
+		  #{receiveUser}
+		  ,
+		  #{title}
+		  ,
+		  #{content}
+		  ,
+		  #{status}
+		  ,
+		  #{delType}
+		  ,
+		  <if test="addTime != null" >
+			#{addTime}
+      </if>
+      <if test="addTime == null" >
+      NOW()
+		  </if>
+		  ,
+		  #{addIp}
+		  ,
+		  #{nid}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinmimoney.web.p2pnew.pojo.Message" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO `message`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+		  <if test="sentUser != null" >
+			`sent_user`,
+		  </if>
+		  <if test="receiveUser != null" >
+			`receive_user`,
+		  </if>
+		  <if test="title != null" >
+			`title`,
+		  </if>
+		  <if test="content != null" >
+			`content`,
+		  </if>
+		  <if test="status != null" >
+			`status`,
+		  </if>
+		  <if test="delType != null" >
+			`del_type`,
+		  </if>
+			`add_time`,
+		  <if test="addIp != null" >
+			`add_ip`,
+		  </if>
+		  <if test="nid != null" >
+			`nid`,
+		  </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+		  <if test="sentUser != null" >
+			#{sentUser},
+		  </if>
+		  <if test="receiveUser != null" >
+			#{receiveUser},
+		  </if>
+		  <if test="title != null" >
+			#{title},
+		  </if>
+		  <if test="content != null" >
+			#{content},
+		  </if>
+		  <if test="status != null" >
+			#{status},
+		  </if>
+		  <if test="delType != null" >
+			#{delType},
+		  </if>
+		  <if test="addTime != null" >
+			#{addTime},
+      </if>
+      <if test="addTime == null" >
+      NOW(),
+		  </if>
+		  <if test="addIp != null" >
+			#{addIp},
+		  </if>
+		  <if test="nid != null" >
+			#{nid},
+		  </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinmimoney.web.p2pnew.pojo.Message" >
+    UPDATE `message`
+    <set >
+	  <if test="sentUser != null" >
+        `sent_user` = #{sentUser},
+      </if>
+	  <if test="receiveUser != null" >
+        `receive_user` = #{receiveUser},
+      </if>
+	  <if test="title != null" >
+        `title` = #{title},
+      </if>
+	  <if test="content != null" >
+        `content` = #{content},
+      </if>
+	  <if test="status != null" >
+        `status` = #{status},
+      </if>
+	  <if test="delType != null" >
+        `del_type` = #{delType},
+      </if>
+	  <if test="addTime != null" >
+        `add_time` = #{addTime},
+      </if>
+	  <if test="addIp != null" >
+        `add_ip` = #{addIp},
+      </if>
+	  <if test="nid != null" >
+        `nid` = #{nid},
+      </if>
+    </set>
+    WHERE `id` = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinmimoney.web.p2pnew.pojo.Message" >
+	UPDATE `message` SET
+        `sent_user` = #{sentUser},
+        `receive_user` = #{receiveUser},
+        `title` = #{title},
+        `content` = #{content},
+        `status` = #{status},
+        `del_type` = #{delType},
+        `add_time` = #{addTime},
+        `add_ip` = #{addIp},
+        `nid` = #{nid}
+    WHERE `id` = #{id}
+  </update>
+  <update id="updateByCondition" parameterType="java.util.Map" >
+    UPDATE `message`
+    <set>
+	  <if test="entity.sentUser != null" >
+        `sent_user` = #{entity.sentUser},
+      </if>
+	  <if test="entity.receiveUser != null" >
+        `receive_user` = #{entity.receiveUser},
+      </if>
+	  <if test="entity.title != null" >
+        `title` = #{entity.title},
+      </if>
+	  <if test="entity.content != null" >
+        `content` = #{entity.content},
+      </if>
+	  <if test="entity.status != null" >
+        `status` = #{entity.status},
+      </if>
+	  <if test="entity.delType != null" >
+        `del_type` = #{entity.delType},
+      </if>
+	  <if test="entity.addTime != null" >
+        `add_time` = #{entity.addTime},
+      </if>
+	  <if test="entity.addIp != null" >
+        `add_ip` = #{entity.addIp},
+      </if>
+	  <if test="entity.nid != null" >
+        `nid` = #{entity.nid},
+      </if>
+      <foreach collection="entity.nullColums" item="nullColum">
+        `${nullColum}` = NULL,
+      </foreach>
+    </set>
+    <include refid="map_params_where_condition" />
+  </update>
+  <update id="updateIncreateNumbers" parameterType="java.util.Map" >
+    UPDATE `message`
+    <set>
+      <foreach collection="increateNumbers" item="numberCloums">
+        `${numberCloums.column}` = `${numberCloums.column}` + #{numberCloums.number},
+      </foreach>
+    </set>
+    <include refid="map_params_where_condition" />
+  </update>
+  <sql id="map_params_where_condition" >
+    <trim prefix="WHERE" prefixOverrides="AND">
+	  <if test="id != null" >
+        AND `id` = #{id}
+	  </if>
+	  <if test="sentUser != null" >
+        AND `sent_user` = #{sentUser}
+	  </if>
+	  <if test="receiveUser != null" >
+        AND `receive_user` = #{receiveUser}
+	  </if>
+	  <if test="title != null" >
+        AND `title` = #{title}
+	  </if>
+	  <if test="content != null" >
+        AND `content` = #{content}
+	  </if>
+	  <if test="status != null" >
+        AND `status` = #{status}
+	  </if>
+	  <if test="delType != null" >
+        AND `del_type` = #{delType}
+	  </if>
+	  <if test="addTime != null" >
+        AND `add_time` = #{addTime}
+	  </if>
+	  <if test="addIp != null" >
+        AND `add_ip` = #{addIp}
+	  </if>
+	  <if test="nid != null" >
+        AND `nid` = #{nid}
+	  </if>
+	  <if test="condition != null">
+	  <if test="condition.id != null" >
+        AND `id` = #{condition.id}
+	  </if>
+	  <if test="condition.sentUser != null" >
+        AND `sent_user` = #{condition.sentUser}
+	  </if>
+	  <if test="condition.receiveUser != null" >
+        AND `receive_user` = #{condition.receiveUser}
+	  </if>
+	  <if test="condition.title != null" >
+        AND `title` = #{condition.title}
+	  </if>
+	  <if test="condition.content != null" >
+        AND `content` = #{condition.content}
+	  </if>
+	  <if test="condition.status != null" >
+        AND `status` = #{condition.status}
+	  </if>
+	  <if test="condition.delType != null" >
+        AND `del_type` = #{condition.delType}
+	  </if>
+	  <if test="condition.addTime != null" >
+        AND `add_time` = #{condition.addTime}
+	  </if>
+	  <if test="condition.addIp != null" >
+        AND `add_ip` = #{condition.addIp}
+	  </if>
+	  <if test="condition.nid != null" >
+        AND `nid` = #{condition.nid}
+	  </if>
+	  </if>
+	  <if test="vo != null and !vo.expressionChainList.empty">
+        AND
+        <foreach collection="vo.expressionChainList" item="expressionChain" separator="OR">
+          <if test="!expressionChain.expressionList.empty">
+            <foreach collection="expressionChain.expressionList" item="expression" separator="AND">
+              <choose>
+                <when test="expression.type == 0">
+                  `${expression.column}` ${expression.operator}
+                </when>
+                <when test="expression.type == 1">
+                  `${expression.column}` ${expression.operator} #{expression.value}
+                </when>
+                <when test="expression.type == 2">
+                  `${expression.column}` ${expression.operator} #{expression.value} AND #{expression.value1}
+                </when>
+                <when test="expression.type == 3">
+                  `${expression.column}` ${expression.operator}
+                  <foreach collection="expression.values" item="value" open="(" separator="," close=")">
+                    #{value}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </if>
+        </foreach>
+      </if>
+      <if test="expressionChainList != null and !expressionChainList.empty">
+        AND
+        <foreach collection="expressionChainList" item="expressionChain" separator="OR">
+          <if test="!expressionChain.expressionList.empty">
+            <foreach collection="expressionChain.expressionList" item="expression" separator="AND">
+              <choose>
+                <when test="expression.type == 0">
+                  `${expression.column}` ${expression.operator}
+                </when>
+                <when test="expression.type == 1">
+                  `${expression.column}` ${expression.operator} #{expression.value}
+                </when>
+                <when test="expression.type == 2">
+                  `${expression.column}` ${expression.operator} #{expression.value} AND #{expression.value1}
+                </when>
+                <when test="expression.type == 3">
+                  `${expression.column}` ${expression.operator}
+                  <foreach collection="expression.values" item="value" open="(" separator="," close=")">
+                    #{value}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </if>
+        </foreach>
+      </if>
+      <include refid="map_params_where_condition_ext" />
+    </trim>
+  </sql>
+  <select id="getList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM `message`
+    <include refid="map_params_where_condition" />
+    <if test="orderBy == null" >
+      ORDER BY `id` DESC
+    </if>
+    <if test="orderBy != null and orderBy != 'no'" >
+      ORDER BY ${orderBy}
+    </if>
+    <if test="pageBeginIndex != null and pageSize != null" >
+      LIMIT #{pageBeginIndex},#{pageSize}
+    </if>
+    <if test="pageBeginIndex == null and pageSize != null" >
+      LIMIT #{pageSize}
+    </if>
+    <if test="pageBeginIndex != null and pageSize == null" >
+      LIMIT #{pageBeginIndex}
+    </if>
+  </select>
+  <delete id="delete" parameterType="java.util.Map" >
+    DELETE
+    FROM `message`
+    <include refid="map_params_where_condition" />
+  </delete>
+  <select id="getCount" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    SELECT COUNT(1)
+    FROM `message`
+    <include refid="map_params_where_condition" />
+  </select>
+</mapper>

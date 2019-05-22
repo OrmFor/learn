@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinmimoney.web.p2pnew.dao.ApiTokenMapper" >
+  <resultMap id="BaseResultMap" type="com.yinmimoney.web.p2pnew.pojo.ApiToken" extends="associationMap">
+	<id column="id" property="id" />
+	<result column="user_code" property="userCode" />
+	<result column="device_id" property="deviceId" />
+	<result column="device_name" property="deviceName" />
+	<result column="token" property="token" />
+	<result column="status" property="status" />
+	<result column="change_time" property="changeTime" />
+	<result column="date_add" property="dateAdd" />
+	<result column="date_update" property="dateUpdate" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+		`id`
+		,`user_code`
+		,`device_id`
+		,`device_name`
+		,`token`
+		,`status`
+		,`change_time`
+		,`date_add`
+		,`date_update`
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM `api_token`
+    WHERE `id` = #{id}
+  </select>
+  <select id="getByCondition" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM `api_token`
+    <include refid="map_params_where_condition" />
+    <if test="orderBy == null" >
+      ORDER BY `id` DESC
+    </if>
+    <if test="orderBy != null and orderBy != 'no'" >
+      ORDER BY ${orderBy}
+    </if>
+	LIMIT 1
+  </select>
+  <select id="aggregate" parameterType="java.util.Map" resultType="java.util.Map">
+    SELECT ${aggregate_sql} FROM `api_token`
+    <include refid="map_params_where_condition" />
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    DELETE FROM `api_token`
+    WHERE `id` = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.yinmimoney.web.p2pnew.pojo.ApiToken" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO `api_token` (
+	  `user_code`
+	  ,`device_id`
+	  ,`device_name`
+	  ,`token`
+	  ,`status`
+	  ,`change_time`
+	  ,`date_add`
+	  ,`date_update`
+      )
+    VALUES (
+		  
+		  #{userCode}
+		  ,
+		  #{deviceId}
+		  ,
+		  #{deviceName}
+		  ,
+		  #{token}
+		  ,
+		  #{status}
+		  ,
+		  #{changeTime}
+		  ,
+		  <if test="dateAdd != null" >
+			#{dateAdd}
+      </if>
+      <if test="dateAdd == null" >
+      NOW()
+		  </if>
+		  ,
+		  #{dateUpdate}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinmimoney.web.p2pnew.pojo.ApiToken" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO `api_token`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+		  <if test="userCode != null" >
+			`user_code`,
+		  </if>
+		  <if test="deviceId != null" >
+			`device_id`,
+		  </if>
+		  <if test="deviceName != null" >
+			`device_name`,
+		  </if>
+		  <if test="token != null" >
+			`token`,
+		  </if>
+		  <if test="status != null" >
+			`status`,
+		  </if>
+		  <if test="changeTime != null" >
+			`change_time`,
+		  </if>
+			`date_add`,
+		  <if test="dateUpdate != null" >
+			`date_update`,
+		  </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+		  <if test="userCode != null" >
+			#{userCode},
+		  </if>
+		  <if test="deviceId != null" >
+			#{deviceId},
+		  </if>
+		  <if test="deviceName != null" >
+			#{deviceName},
+		  </if>
+		  <if test="token != null" >
+			#{token},
+		  </if>
+		  <if test="status != null" >
+			#{status},
+		  </if>
+		  <if test="changeTime != null" >
+			#{changeTime},
+		  </if>
+		  <if test="dateAdd != null" >
+			#{dateAdd},
+      </if>
+      <if test="dateAdd == null" >
+      NOW(),
+		  </if>
+		  <if test="dateUpdate != null" >
+			#{dateUpdate},
+		  </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinmimoney.web.p2pnew.pojo.ApiToken" >
+    UPDATE `api_token`
+    <set >
+	  <if test="userCode != null" >
+        `user_code` = #{userCode},
+      </if>
+	  <if test="deviceId != null" >
+        `device_id` = #{deviceId},
+      </if>
+	  <if test="deviceName != null" >
+        `device_name` = #{deviceName},
+      </if>
+	  <if test="token != null" >
+        `token` = #{token},
+      </if>
+	  <if test="status != null" >
+        `status` = #{status},
+      </if>
+	  <if test="changeTime != null" >
+        `change_time` = #{changeTime},
+      </if>
+	  <if test="dateAdd != null" >
+        `date_add` = #{dateAdd},
+      </if>
+	  <if test="dateUpdate != null" >
+        `date_update` = #{dateUpdate},
+      </if>
+    </set>
+    WHERE `id` = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinmimoney.web.p2pnew.pojo.ApiToken" >
+	UPDATE `api_token` SET
+        `user_code` = #{userCode},
+        `device_id` = #{deviceId},
+        `device_name` = #{deviceName},
+        `token` = #{token},
+        `status` = #{status},
+        `change_time` = #{changeTime},
+        `date_add` = #{dateAdd},
+        `date_update` = #{dateUpdate}
+    WHERE `id` = #{id}
+  </update>
+  <update id="updateByCondition" parameterType="java.util.Map" >
+    UPDATE `api_token`
+    <set>
+	  <if test="entity.userCode != null" >
+        `user_code` = #{entity.userCode},
+      </if>
+	  <if test="entity.deviceId != null" >
+        `device_id` = #{entity.deviceId},
+      </if>
+	  <if test="entity.deviceName != null" >
+        `device_name` = #{entity.deviceName},
+      </if>
+	  <if test="entity.token != null" >
+        `token` = #{entity.token},
+      </if>
+	  <if test="entity.status != null" >
+        `status` = #{entity.status},
+      </if>
+	  <if test="entity.changeTime != null" >
+        `change_time` = #{entity.changeTime},
+      </if>
+	  <if test="entity.dateAdd != null" >
+        `date_add` = #{entity.dateAdd},
+      </if>
+	  <if test="entity.dateUpdate != null" >
+        `date_update` = #{entity.dateUpdate},
+      </if>
+      <foreach collection="entity.nullColums" item="nullColum">
+        `${nullColum}` = NULL,
+      </foreach>
+    </set>
+    <include refid="map_params_where_condition" />
+  </update>
+  <update id="updateIncreateNumbers" parameterType="java.util.Map" >
+    UPDATE `api_token`
+    <set>
+      <foreach collection="increateNumbers" item="numberCloums">
+        `${numberCloums.column}` = `${numberCloums.column}` + #{numberCloums.number},
+      </foreach>
+    </set>
+    <include refid="map_params_where_condition" />
+  </update>
+  <sql id="map_params_where_condition" >
+    <trim prefix="WHERE" prefixOverrides="AND">
+	  <if test="id != null" >
+        AND `id` = #{id}
+	  </if>
+	  <if test="userCode != null" >
+        AND `user_code` = #{userCode}
+	  </if>
+	  <if test="deviceId != null" >
+        AND `device_id` = #{deviceId}
+	  </if>
+	  <if test="deviceName != null" >
+        AND `device_name` = #{deviceName}
+	  </if>
+	  <if test="token != null" >
+        AND `token` = #{token}
+	  </if>
+	  <if test="status != null" >
+        AND `status` = #{status}
+	  </if>
+	  <if test="changeTime != null" >
+        AND `change_time` = #{changeTime}
+	  </if>
+	  <if test="dateAdd != null" >
+        AND `date_add` = #{dateAdd}
+	  </if>
+	  <if test="dateUpdate != null" >
+        AND `date_update` = #{dateUpdate}
+	  </if>
+	  <if test="condition != null">
+	  <if test="condition.id != null" >
+        AND `id` = #{condition.id}
+	  </if>
+	  <if test="condition.userCode != null" >
+        AND `user_code` = #{condition.userCode}
+	  </if>
+	  <if test="condition.deviceId != null" >
+        AND `device_id` = #{condition.deviceId}
+	  </if>
+	  <if test="condition.deviceName != null" >
+        AND `device_name` = #{condition.deviceName}
+	  </if>
+	  <if test="condition.token != null" >
+        AND `token` = #{condition.token}
+	  </if>
+	  <if test="condition.status != null" >
+        AND `status` = #{condition.status}
+	  </if>
+	  <if test="condition.changeTime != null" >
+        AND `change_time` = #{condition.changeTime}
+	  </if>
+	  <if test="condition.dateAdd != null" >
+        AND `date_add` = #{condition.dateAdd}
+	  </if>
+	  <if test="condition.dateUpdate != null" >
+        AND `date_update` = #{condition.dateUpdate}
+	  </if>
+	  </if>
+	  <if test="vo != null and !vo.expressionChainList.empty">
+        AND
+        <foreach collection="vo.expressionChainList" item="expressionChain" separator="OR">
+          <if test="!expressionChain.expressionList.empty">
+            <foreach collection="expressionChain.expressionList" item="expression" separator="AND">
+              <choose>
+                <when test="expression.type == 0">
+                  `${expression.column}` ${expression.operator}
+                </when>
+                <when test="expression.type == 1">
+                  `${expression.column}` ${expression.operator} #{expression.value}
+                </when>
+                <when test="expression.type == 2">
+                  `${expression.column}` ${expression.operator} #{expression.value} AND #{expression.value1}
+                </when>
+                <when test="expression.type == 3">
+                  `${expression.column}` ${expression.operator}
+                  <foreach collection="expression.values" item="value" open="(" separator="," close=")">
+                    #{value}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </if>
+        </foreach>
+      </if>
+      <if test="expressionChainList != null and !expressionChainList.empty">
+        AND
+        <foreach collection="expressionChainList" item="expressionChain" separator="OR">
+          <if test="!expressionChain.expressionList.empty">
+            <foreach collection="expressionChain.expressionList" item="expression" separator="AND">
+              <choose>
+                <when test="expression.type == 0">
+                  `${expression.column}` ${expression.operator}
+                </when>
+                <when test="expression.type == 1">
+                  `${expression.column}` ${expression.operator} #{expression.value}
+                </when>
+                <when test="expression.type == 2">
+                  `${expression.column}` ${expression.operator} #{expression.value} AND #{expression.value1}
+                </when>
+                <when test="expression.type == 3">
+                  `${expression.column}` ${expression.operator}
+                  <foreach collection="expression.values" item="value" open="(" separator="," close=")">
+                    #{value}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </if>
+        </foreach>
+      </if>
+      <include refid="map_params_where_condition_ext" />
+    </trim>
+  </sql>
+  <select id="getList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM `api_token`
+    <include refid="map_params_where_condition" />
+    <if test="orderBy == null" >
+      ORDER BY `id` DESC
+    </if>
+    <if test="orderBy != null and orderBy != 'no'" >
+      ORDER BY ${orderBy}
+    </if>
+    <if test="pageBeginIndex != null and pageSize != null" >
+      LIMIT #{pageBeginIndex},#{pageSize}
+    </if>
+    <if test="pageBeginIndex == null and pageSize != null" >
+      LIMIT #{pageSize}
+    </if>
+    <if test="pageBeginIndex != null and pageSize == null" >
+      LIMIT #{pageBeginIndex}
+    </if>
+  </select>
+  <delete id="delete" parameterType="java.util.Map" >
+    DELETE
+    FROM `api_token`
+    <include refid="map_params_where_condition" />
+  </delete>
+  <select id="getCount" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    SELECT COUNT(1)
+    FROM `api_token`
+    <include refid="map_params_where_condition" />
+  </select>
+</mapper>
