@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinmimoney.web.p2pnew.dao.NoticeTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.yinmimoney.web.p2pnew.pojo.NoticeType" extends="associationMap">
+	<id column="id" property="id" />
+	<result column="type" property="type" />
+	<result column="nid" property="nid" />
+	<result column="notice_type" property="noticeType" />
+	<result column="name" property="name" />
+	<result column="title_templet" property="titleTemplet" />
+	<result column="templet" property="templet" />
+	<result column="send" property="send" />
+	<result column="can_switch" property="canSwitch" />
+	<result column="remark" property="remark" />
+	<result column="add_time" property="addTime" />
+	<result column="add_ip" property="addIp" />
+	<result column="update_time" property="updateTime" />
+	<result column="update_ip" property="updateIp" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+		`id`
+		,`type`
+		,`nid`
+		,`notice_type`
+		,`name`
+		,`title_templet`
+		,`templet`
+		,`send`
+		,`can_switch`
+		,`remark`
+		,`add_time`
+		,`add_ip`
+		,`update_time`
+		,`update_ip`
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM `notice_type`
+    WHERE `id` = #{id}
+  </select>
+  <select id="getByCondition" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM `notice_type`
+    <include refid="map_params_where_condition" />
+    <if test="orderBy == null" >
+      ORDER BY `id` DESC
+    </if>
+    <if test="orderBy != null and orderBy != 'no'" >
+      ORDER BY ${orderBy}
+    </if>
+	LIMIT 1
+  </select>
+  <select id="aggregate" parameterType="java.util.Map" resultType="java.util.Map">
+    SELECT ${aggregate_sql} FROM `notice_type`
+    <include refid="map_params_where_condition" />
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    DELETE FROM `notice_type`
+    WHERE `id` = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.yinmimoney.web.p2pnew.pojo.NoticeType" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO `notice_type` (
+	  `type`
+	  ,`nid`
+	  ,`notice_type`
+	  ,`name`
+	  ,`title_templet`
+	  ,`templet`
+	  ,`send`
+	  ,`can_switch`
+	  ,`remark`
+	  ,`add_time`
+	  ,`add_ip`
+	  ,`update_time`
+	  ,`update_ip`
+      )
+    VALUES (
+		  
+		  #{type}
+		  ,
+		  #{nid}
+		  ,
+		  #{noticeType}
+		  ,
+		  #{name}
+		  ,
+		  #{titleTemplet}
+		  ,
+		  #{templet}
+		  ,
+		  #{send}
+		  ,
+		  #{canSwitch}
+		  ,
+		  #{remark}
+		  ,
+		  <if test="addTime != null" >
+			#{addTime}
+      </if>
+      <if test="addTime == null" >
+      NOW()
+		  </if>
+		  ,
+		  #{addIp}
+		  ,
+		  #{updateTime}
+		  ,
+		  #{updateIp}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinmimoney.web.p2pnew.pojo.NoticeType" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO `notice_type`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+		  <if test="type != null" >
+			`type`,
+		  </if>
+		  <if test="nid != null" >
+			`nid`,
+		  </if>
+		  <if test="noticeType != null" >
+			`notice_type`,
+		  </if>
+		  <if test="name != null" >
+			`name`,
+		  </if>
+		  <if test="titleTemplet != null" >
+			`title_templet`,
+		  </if>
+		  <if test="templet != null" >
+			`templet`,
+		  </if>
+		  <if test="send != null" >
+			`send`,
+		  </if>
+		  <if test="canSwitch != null" >
+			`can_switch`,
+		  </if>
+		  <if test="remark != null" >
+			`remark`,
+		  </if>
+			`add_time`,
+		  <if test="addIp != null" >
+			`add_ip`,
+		  </if>
+		  <if test="updateTime != null" >
+			`update_time`,
+		  </if>
+		  <if test="updateIp != null" >
+			`update_ip`,
+		  </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+		  <if test="type != null" >
+			#{type},
+		  </if>
+		  <if test="nid != null" >
+			#{nid},
+		  </if>
+		  <if test="noticeType != null" >
+			#{noticeType},
+		  </if>
+		  <if test="name != null" >
+			#{name},
+		  </if>
+		  <if test="titleTemplet != null" >
+			#{titleTemplet},
+		  </if>
+		  <if test="templet != null" >
+			#{templet},
+		  </if>
+		  <if test="send != null" >
+			#{send},
+		  </if>
+		  <if test="canSwitch != null" >
+			#{canSwitch},
+		  </if>
+		  <if test="remark != null" >
+			#{remark},
+		  </if>
+		  <if test="addTime != null" >
+			#{addTime},
+      </if>
+      <if test="addTime == null" >
+      NOW(),
+		  </if>
+		  <if test="addIp != null" >
+			#{addIp},
+		  </if>
+		  <if test="updateTime != null" >
+			#{updateTime},
+		  </if>
+		  <if test="updateIp != null" >
+			#{updateIp},
+		  </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinmimoney.web.p2pnew.pojo.NoticeType" >
+    UPDATE `notice_type`
+    <set >
+	  <if test="type != null" >
+        `type` = #{type},
+      </if>
+	  <if test="nid != null" >
+        `nid` = #{nid},
+      </if>
+	  <if test="noticeType != null" >
+        `notice_type` = #{noticeType},
+      </if>
+	  <if test="name != null" >
+        `name` = #{name},
+      </if>
+	  <if test="titleTemplet != null" >
+        `title_templet` = #{titleTemplet},
+      </if>
+	  <if test="templet != null" >
+        `templet` = #{templet},
+      </if>
+	  <if test="send != null" >
+        `send` = #{send},
+      </if>
+	  <if test="canSwitch != null" >
+        `can_switch` = #{canSwitch},
+      </if>
+	  <if test="remark != null" >
+        `remark` = #{remark},
+      </if>
+	  <if test="addTime != null" >
+        `add_time` = #{addTime},
+      </if>
+	  <if test="addIp != null" >
+        `add_ip` = #{addIp},
+      </if>
+	  <if test="updateTime != null" >
+        `update_time` = #{updateTime},
+      </if>
+	  <if test="updateIp != null" >
+        `update_ip` = #{updateIp},
+      </if>
+    </set>
+    WHERE `id` = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinmimoney.web.p2pnew.pojo.NoticeType" >
+	UPDATE `notice_type` SET
+        `type` = #{type},
+        `nid` = #{nid},
+        `notice_type` = #{noticeType},
+        `name` = #{name},
+        `title_templet` = #{titleTemplet},
+        `templet` = #{templet},
+        `send` = #{send},
+        `can_switch` = #{canSwitch},
+        `remark` = #{remark},
+        `add_time` = #{addTime},
+        `add_ip` = #{addIp},
+        `update_time` = #{updateTime},
+        `update_ip` = #{updateIp}
+    WHERE `id` = #{id}
+  </update>
+  <update id="updateByCondition" parameterType="java.util.Map" >
+    UPDATE `notice_type`
+    <set>
+	  <if test="entity.type != null" >
+        `type` = #{entity.type},
+      </if>
+	  <if test="entity.nid != null" >
+        `nid` = #{entity.nid},
+      </if>
+	  <if test="entity.noticeType != null" >
+        `notice_type` = #{entity.noticeType},
+      </if>
+	  <if test="entity.name != null" >
+        `name` = #{entity.name},
+      </if>
+	  <if test="entity.titleTemplet != null" >
+        `title_templet` = #{entity.titleTemplet},
+      </if>
+	  <if test="entity.templet != null" >
+        `templet` = #{entity.templet},
+      </if>
+	  <if test="entity.send != null" >
+        `send` = #{entity.send},
+      </if>
+	  <if test="entity.canSwitch != null" >
+        `can_switch` = #{entity.canSwitch},
+      </if>
+	  <if test="entity.remark != null" >
+        `remark` = #{entity.remark},
+      </if>
+	  <if test="entity.addTime != null" >
+        `add_time` = #{entity.addTime},
+      </if>
+	  <if test="entity.addIp != null" >
+        `add_ip` = #{entity.addIp},
+      </if>
+	  <if test="entity.updateTime != null" >
+        `update_time` = #{entity.updateTime},
+      </if>
+	  <if test="entity.updateIp != null" >
+        `update_ip` = #{entity.updateIp},
+      </if>
+      <foreach collection="entity.nullColums" item="nullColum">
+        `${nullColum}` = NULL,
+      </foreach>
+    </set>
+    <include refid="map_params_where_condition" />
+  </update>
+  <update id="updateIncreateNumbers" parameterType="java.util.Map" >
+    UPDATE `notice_type`
+    <set>
+      <foreach collection="increateNumbers" item="numberCloums">
+        `${numberCloums.column}` = `${numberCloums.column}` + #{numberCloums.number},
+      </foreach>
+    </set>
+    <include refid="map_params_where_condition" />
+  </update>
+  <sql id="map_params_where_condition" >
+    <trim prefix="WHERE" prefixOverrides="AND">
+	  <if test="id != null" >
+        AND `id` = #{id}
+	  </if>
+	  <if test="type != null" >
+        AND `type` = #{type}
+	  </if>
+	  <if test="nid != null" >
+        AND `nid` = #{nid}
+	  </if>
+	  <if test="noticeType != null" >
+        AND `notice_type` = #{noticeType}
+	  </if>
+	  <if test="name != null" >
+        AND `name` = #{name}
+	  </if>
+	  <if test="titleTemplet != null" >
+        AND `title_templet` = #{titleTemplet}
+	  </if>
+	  <if test="templet != null" >
+        AND `templet` = #{templet}
+	  </if>
+	  <if test="send != null" >
+        AND `send` = #{send}
+	  </if>
+	  <if test="canSwitch != null" >
+        AND `can_switch` = #{canSwitch}
+	  </if>
+	  <if test="remark != null" >
+        AND `remark` = #{remark}
+	  </if>
+	  <if test="addTime != null" >
+        AND `add_time` = #{addTime}
+	  </if>
+	  <if test="addIp != null" >
+        AND `add_ip` = #{addIp}
+	  </if>
+	  <if test="updateTime != null" >
+        AND `update_time` = #{updateTime}
+	  </if>
+	  <if test="updateIp != null" >
+        AND `update_ip` = #{updateIp}
+	  </if>
+	  <if test="condition != null">
+	  <if test="condition.id != null" >
+        AND `id` = #{condition.id}
+	  </if>
+	  <if test="condition.type != null" >
+        AND `type` = #{condition.type}
+	  </if>
+	  <if test="condition.nid != null" >
+        AND `nid` = #{condition.nid}
+	  </if>
+	  <if test="condition.noticeType != null" >
+        AND `notice_type` = #{condition.noticeType}
+	  </if>
+	  <if test="condition.name != null" >
+        AND `name` = #{condition.name}
+	  </if>
+	  <if test="condition.titleTemplet != null" >
+        AND `title_templet` = #{condition.titleTemplet}
+	  </if>
+	  <if test="condition.templet != null" >
+        AND `templet` = #{condition.templet}
+	  </if>
+	  <if test="condition.send != null" >
+        AND `send` = #{condition.send}
+	  </if>
+	  <if test="condition.canSwitch != null" >
+        AND `can_switch` = #{condition.canSwitch}
+	  </if>
+	  <if test="condition.remark != null" >
+        AND `remark` = #{condition.remark}
+	  </if>
+	  <if test="condition.addTime != null" >
+        AND `add_time` = #{condition.addTime}
+	  </if>
+	  <if test="condition.addIp != null" >
+        AND `add_ip` = #{condition.addIp}
+	  </if>
+	  <if test="condition.updateTime != null" >
+        AND `update_time` = #{condition.updateTime}
+	  </if>
+	  <if test="condition.updateIp != null" >
+        AND `update_ip` = #{condition.updateIp}
+	  </if>
+	  </if>
+	  <if test="vo != null and !vo.expressionChainList.empty">
+        AND
+        <foreach collection="vo.expressionChainList" item="expressionChain" separator="OR">
+          <if test="!expressionChain.expressionList.empty">
+            <foreach collection="expressionChain.expressionList" item="expression" separator="AND">
+              <choose>
+                <when test="expression.type == 0">
+                  `${expression.column}` ${expression.operator}
+                </when>
+                <when test="expression.type == 1">
+                  `${expression.column}` ${expression.operator} #{expression.value}
+                </when>
+                <when test="expression.type == 2">
+                  `${expression.column}` ${expression.operator} #{expression.value} AND #{expression.value1}
+                </when>
+                <when test="expression.type == 3">
+                  `${expression.column}` ${expression.operator}
+                  <foreach collection="expression.values" item="value" open="(" separator="," close=")">
+                    #{value}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </if>
+        </foreach>
+      </if>
+      <if test="expressionChainList != null and !expressionChainList.empty">
+        AND
+        <foreach collection="expressionChainList" item="expressionChain" separator="OR">
+          <if test="!expressionChain.expressionList.empty">
+            <foreach collection="expressionChain.expressionList" item="expression" separator="AND">
+              <choose>
+                <when test="expression.type == 0">
+                  `${expression.column}` ${expression.operator}
+                </when>
+                <when test="expression.type == 1">
+                  `${expression.column}` ${expression.operator} #{expression.value}
+                </when>
+                <when test="expression.type == 2">
+                  `${expression.column}` ${expression.operator} #{expression.value} AND #{expression.value1}
+                </when>
+                <when test="expression.type == 3">
+                  `${expression.column}` ${expression.operator}
+                  <foreach collection="expression.values" item="value" open="(" separator="," close=")">
+                    #{value}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </if>
+        </foreach>
+      </if>
+      <include refid="map_params_where_condition_ext" />
+    </trim>
+  </sql>
+  <select id="getList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM `notice_type`
+    <include refid="map_params_where_condition" />
+    <if test="orderBy == null" >
+      ORDER BY `id` DESC
+    </if>
+    <if test="orderBy != null and orderBy != 'no'" >
+      ORDER BY ${orderBy}
+    </if>
+    <if test="pageBeginIndex != null and pageSize != null" >
+      LIMIT #{pageBeginIndex},#{pageSize}
+    </if>
+    <if test="pageBeginIndex == null and pageSize != null" >
+      LIMIT #{pageSize}
+    </if>
+    <if test="pageBeginIndex != null and pageSize == null" >
+      LIMIT #{pageBeginIndex}
+    </if>
+  </select>
+  <delete id="delete" parameterType="java.util.Map" >
+    DELETE
+    FROM `notice_type`
+    <include refid="map_params_where_condition" />
+  </delete>
+  <select id="getCount" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    SELECT COUNT(1)
+    FROM `notice_type`
+    <include refid="map_params_where_condition" />
+  </select>
+</mapper>

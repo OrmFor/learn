@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinmimoney.web.p2pnew.dao.SLogTemplateMapper" >
+  <resultMap id="BaseResultMap" type="com.yinmimoney.web.p2pnew.pojo.SLogTemplate" extends="associationMap">
+	<id column="id" property="id" />
+	<result column="nid" property="nid" />
+	<result column="value" property="value" />
+	<result column="name" property="name" />
+	<result column="remark" property="remark" />
+	<result column="payments_type" property="paymentsType" />
+	<result column="add_time" property="addTime" />
+	<result column="update_time" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+		`id`
+		,`nid`
+		,`value`
+		,`name`
+		,`remark`
+		,`payments_type`
+		,`add_time`
+		,`update_time`
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM `s_log_template`
+    WHERE `id` = #{id}
+  </select>
+  <select id="getByCondition" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM `s_log_template`
+    <include refid="map_params_where_condition" />
+    <if test="orderBy == null" >
+      ORDER BY `id` DESC
+    </if>
+    <if test="orderBy != null and orderBy != 'no'" >
+      ORDER BY ${orderBy}
+    </if>
+	LIMIT 1
+  </select>
+  <select id="aggregate" parameterType="java.util.Map" resultType="java.util.Map">
+    SELECT ${aggregate_sql} FROM `s_log_template`
+    <include refid="map_params_where_condition" />
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    DELETE FROM `s_log_template`
+    WHERE `id` = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.yinmimoney.web.p2pnew.pojo.SLogTemplate" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO `s_log_template` (
+	  `nid`
+	  ,`value`
+	  ,`name`
+	  ,`remark`
+	  ,`payments_type`
+	  ,`add_time`
+	  ,`update_time`
+      )
+    VALUES (
+		  
+		  #{nid}
+		  ,
+		  #{value}
+		  ,
+		  #{name}
+		  ,
+		  #{remark}
+		  ,
+		  #{paymentsType}
+		  ,
+		  <if test="addTime != null" >
+			#{addTime}
+      </if>
+      <if test="addTime == null" >
+      NOW()
+		  </if>
+		  ,
+		  <if test="updateTime != null" >
+			#{updateTime}
+      </if>
+      <if test="updateTime == null" >
+      NOW()
+		  </if>
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinmimoney.web.p2pnew.pojo.SLogTemplate" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO `s_log_template`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+		  <if test="nid != null" >
+			`nid`,
+		  </if>
+		  <if test="value != null" >
+			`value`,
+		  </if>
+		  <if test="name != null" >
+			`name`,
+		  </if>
+		  <if test="remark != null" >
+			`remark`,
+		  </if>
+		  <if test="paymentsType != null" >
+			`payments_type`,
+		  </if>
+			`add_time`,
+			`update_time`,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+		  <if test="nid != null" >
+			#{nid},
+		  </if>
+		  <if test="value != null" >
+			#{value},
+		  </if>
+		  <if test="name != null" >
+			#{name},
+		  </if>
+		  <if test="remark != null" >
+			#{remark},
+		  </if>
+		  <if test="paymentsType != null" >
+			#{paymentsType},
+		  </if>
+		  <if test="addTime != null" >
+			#{addTime},
+      </if>
+      <if test="addTime == null" >
+      NOW(),
+		  </if>
+		  <if test="updateTime != null" >
+			#{updateTime},
+      </if>
+      <if test="updateTime == null" >
+      NOW(),
+		  </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinmimoney.web.p2pnew.pojo.SLogTemplate" >
+    UPDATE `s_log_template`
+    <set >
+	  <if test="nid != null" >
+        `nid` = #{nid},
+      </if>
+	  <if test="value != null" >
+        `value` = #{value},
+      </if>
+	  <if test="name != null" >
+        `name` = #{name},
+      </if>
+	  <if test="remark != null" >
+        `remark` = #{remark},
+      </if>
+	  <if test="paymentsType != null" >
+        `payments_type` = #{paymentsType},
+      </if>
+	  <if test="addTime != null" >
+        `add_time` = #{addTime},
+      </if>
+	  <if test="updateTime != null" >
+        `update_time` = #{updateTime},
+      </if>
+    </set>
+    WHERE `id` = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinmimoney.web.p2pnew.pojo.SLogTemplate" >
+	UPDATE `s_log_template` SET
+        `nid` = #{nid},
+        `value` = #{value},
+        `name` = #{name},
+        `remark` = #{remark},
+        `payments_type` = #{paymentsType},
+        `add_time` = #{addTime},
+        `update_time` = #{updateTime}
+    WHERE `id` = #{id}
+  </update>
+  <update id="updateByCondition" parameterType="java.util.Map" >
+    UPDATE `s_log_template`
+    <set>
+	  <if test="entity.nid != null" >
+        `nid` = #{entity.nid},
+      </if>
+	  <if test="entity.value != null" >
+        `value` = #{entity.value},
+      </if>
+	  <if test="entity.name != null" >
+        `name` = #{entity.name},
+      </if>
+	  <if test="entity.remark != null" >
+        `remark` = #{entity.remark},
+      </if>
+	  <if test="entity.paymentsType != null" >
+        `payments_type` = #{entity.paymentsType},
+      </if>
+	  <if test="entity.addTime != null" >
+        `add_time` = #{entity.addTime},
+      </if>
+	  <if test="entity.updateTime != null" >
+        `update_time` = #{entity.updateTime},
+      </if>
+      <foreach collection="entity.nullColums" item="nullColum">
+        `${nullColum}` = NULL,
+      </foreach>
+    </set>
+    <include refid="map_params_where_condition" />
+  </update>
+  <update id="updateIncreateNumbers" parameterType="java.util.Map" >
+    UPDATE `s_log_template`
+    <set>
+      <foreach collection="increateNumbers" item="numberCloums">
+        `${numberCloums.column}` = `${numberCloums.column}` + #{numberCloums.number},
+      </foreach>
+    </set>
+    <include refid="map_params_where_condition" />
+  </update>
+  <sql id="map_params_where_condition" >
+    <trim prefix="WHERE" prefixOverrides="AND">
+	  <if test="id != null" >
+        AND `id` = #{id}
+	  </if>
+	  <if test="nid != null" >
+        AND `nid` = #{nid}
+	  </if>
+	  <if test="value != null" >
+        AND `value` = #{value}
+	  </if>
+	  <if test="name != null" >
+        AND `name` = #{name}
+	  </if>
+	  <if test="remark != null" >
+        AND `remark` = #{remark}
+	  </if>
+	  <if test="paymentsType != null" >
+        AND `payments_type` = #{paymentsType}
+	  </if>
+	  <if test="addTime != null" >
+        AND `add_time` = #{addTime}
+	  </if>
+	  <if test="updateTime != null" >
+        AND `update_time` = #{updateTime}
+	  </if>
+	  <if test="condition != null">
+	  <if test="condition.id != null" >
+        AND `id` = #{condition.id}
+	  </if>
+	  <if test="condition.nid != null" >
+        AND `nid` = #{condition.nid}
+	  </if>
+	  <if test="condition.value != null" >
+        AND `value` = #{condition.value}
+	  </if>
+	  <if test="condition.name != null" >
+        AND `name` = #{condition.name}
+	  </if>
+	  <if test="condition.remark != null" >
+        AND `remark` = #{condition.remark}
+	  </if>
+	  <if test="condition.paymentsType != null" >
+        AND `payments_type` = #{condition.paymentsType}
+	  </if>
+	  <if test="condition.addTime != null" >
+        AND `add_time` = #{condition.addTime}
+	  </if>
+	  <if test="condition.updateTime != null" >
+        AND `update_time` = #{condition.updateTime}
+	  </if>
+	  </if>
+	  <if test="vo != null and !vo.expressionChainList.empty">
+        AND
+        <foreach collection="vo.expressionChainList" item="expressionChain" separator="OR">
+          <if test="!expressionChain.expressionList.empty">
+            <foreach collection="expressionChain.expressionList" item="expression" separator="AND">
+              <choose>
+                <when test="expression.type == 0">
+                  `${expression.column}` ${expression.operator}
+                </when>
+                <when test="expression.type == 1">
+                  `${expression.column}` ${expression.operator} #{expression.value}
+                </when>
+                <when test="expression.type == 2">
+                  `${expression.column}` ${expression.operator} #{expression.value} AND #{expression.value1}
+                </when>
+                <when test="expression.type == 3">
+                  `${expression.column}` ${expression.operator}
+                  <foreach collection="expression.values" item="value" open="(" separator="," close=")">
+                    #{value}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </if>
+        </foreach>
+      </if>
+      <if test="expressionChainList != null and !expressionChainList.empty">
+        AND
+        <foreach collection="expressionChainList" item="expressionChain" separator="OR">
+          <if test="!expressionChain.expressionList.empty">
+            <foreach collection="expressionChain.expressionList" item="expression" separator="AND">
+              <choose>
+                <when test="expression.type == 0">
+                  `${expression.column}` ${expression.operator}
+                </when>
+                <when test="expression.type == 1">
+                  `${expression.column}` ${expression.operator} #{expression.value}
+                </when>
+                <when test="expression.type == 2">
+                  `${expression.column}` ${expression.operator} #{expression.value} AND #{expression.value1}
+                </when>
+                <when test="expression.type == 3">
+                  `${expression.column}` ${expression.operator}
+                  <foreach collection="expression.values" item="value" open="(" separator="," close=")">
+                    #{value}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </if>
+        </foreach>
+      </if>
+      <include refid="map_params_where_condition_ext" />
+    </trim>
+  </sql>
+  <select id="getList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM `s_log_template`
+    <include refid="map_params_where_condition" />
+    <if test="orderBy == null" >
+      ORDER BY `id` DESC
+    </if>
+    <if test="orderBy != null and orderBy != 'no'" >
+      ORDER BY ${orderBy}
+    </if>
+    <if test="pageBeginIndex != null and pageSize != null" >
+      LIMIT #{pageBeginIndex},#{pageSize}
+    </if>
+    <if test="pageBeginIndex == null and pageSize != null" >
+      LIMIT #{pageSize}
+    </if>
+    <if test="pageBeginIndex != null and pageSize == null" >
+      LIMIT #{pageBeginIndex}
+    </if>
+  </select>
+  <delete id="delete" parameterType="java.util.Map" >
+    DELETE
+    FROM `s_log_template`
+    <include refid="map_params_where_condition" />
+  </delete>
+  <select id="getCount" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    SELECT COUNT(1)
+    FROM `s_log_template`
+    <include refid="map_params_where_condition" />
+  </select>
+</mapper>

@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinmimoney.web.p2pnew.dao.AdminMapper" >
+  <resultMap id="BaseResultMap" type="com.yinmimoney.web.p2pnew.pojo.Admin" extends="associationMap">
+	<id column="id" property="id" />
+	<result column="user_code" property="userCode" />
+	<result column="user_name" property="userName" />
+	<result column="real_name" property="realName" />
+	<result column="mobile_phone" property="mobilePhone" />
+	<result column="pwd" property="pwd" />
+	<result column="login_time" property="loginTime" />
+	<result column="login_ip" property="loginIp" />
+	<result column="status" property="status" />
+	<result column="register_time" property="registerTime" />
+	<result column="update_time" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+		`id`
+		,`user_code`
+		,`user_name`
+		,`real_name`
+		,`mobile_phone`
+		,`pwd`
+		,`login_time`
+		,`login_ip`
+		,`status`
+		,`register_time`
+		,`update_time`
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM `admin`
+    WHERE `id` = #{id}
+  </select>
+  <select id="getByCondition" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM `admin`
+    <include refid="map_params_where_condition" />
+    <if test="orderBy == null" >
+      ORDER BY `id` DESC
+    </if>
+    <if test="orderBy != null and orderBy != 'no'" >
+      ORDER BY ${orderBy}
+    </if>
+	LIMIT 1
+  </select>
+  <select id="aggregate" parameterType="java.util.Map" resultType="java.util.Map">
+    SELECT ${aggregate_sql} FROM `admin`
+    <include refid="map_params_where_condition" />
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    DELETE FROM `admin`
+    WHERE `id` = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.yinmimoney.web.p2pnew.pojo.Admin" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO `admin` (
+	  `user_code`
+	  ,`user_name`
+	  ,`real_name`
+	  ,`mobile_phone`
+	  ,`pwd`
+	  ,`login_time`
+	  ,`login_ip`
+	  ,`status`
+	  ,`register_time`
+	  ,`update_time`
+      )
+    VALUES (
+		  
+		  #{userCode}
+		  ,
+		  #{userName}
+		  ,
+		  #{realName}
+		  ,
+		  #{mobilePhone}
+		  ,
+		  #{pwd}
+		  ,
+		  #{loginTime}
+		  ,
+		  #{loginIp}
+		  ,
+		  #{status}
+		  ,
+		  <if test="registerTime != null" >
+			#{registerTime}
+      </if>
+      <if test="registerTime == null" >
+      NOW()
+		  </if>
+		  ,
+		  #{updateTime}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinmimoney.web.p2pnew.pojo.Admin" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO `admin`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+		  <if test="userCode != null" >
+			`user_code`,
+		  </if>
+		  <if test="userName != null" >
+			`user_name`,
+		  </if>
+		  <if test="realName != null" >
+			`real_name`,
+		  </if>
+		  <if test="mobilePhone != null" >
+			`mobile_phone`,
+		  </if>
+		  <if test="pwd != null" >
+			`pwd`,
+		  </if>
+		  <if test="loginTime != null" >
+			`login_time`,
+		  </if>
+		  <if test="loginIp != null" >
+			`login_ip`,
+		  </if>
+		  <if test="status != null" >
+			`status`,
+		  </if>
+			`register_time`,
+		  <if test="updateTime != null" >
+			`update_time`,
+		  </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+		  <if test="userCode != null" >
+			#{userCode},
+		  </if>
+		  <if test="userName != null" >
+			#{userName},
+		  </if>
+		  <if test="realName != null" >
+			#{realName},
+		  </if>
+		  <if test="mobilePhone != null" >
+			#{mobilePhone},
+		  </if>
+		  <if test="pwd != null" >
+			#{pwd},
+		  </if>
+		  <if test="loginTime != null" >
+			#{loginTime},
+		  </if>
+		  <if test="loginIp != null" >
+			#{loginIp},
+		  </if>
+		  <if test="status != null" >
+			#{status},
+		  </if>
+		  <if test="registerTime != null" >
+			#{registerTime},
+      </if>
+      <if test="registerTime == null" >
+      NOW(),
+		  </if>
+		  <if test="updateTime != null" >
+			#{updateTime},
+		  </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinmimoney.web.p2pnew.pojo.Admin" >
+    UPDATE `admin`
+    <set >
+	  <if test="userCode != null" >
+        `user_code` = #{userCode},
+      </if>
+	  <if test="userName != null" >
+        `user_name` = #{userName},
+      </if>
+	  <if test="realName != null" >
+        `real_name` = #{realName},
+      </if>
+	  <if test="mobilePhone != null" >
+        `mobile_phone` = #{mobilePhone},
+      </if>
+	  <if test="pwd != null" >
+        `pwd` = #{pwd},
+      </if>
+	  <if test="loginTime != null" >
+        `login_time` = #{loginTime},
+      </if>
+	  <if test="loginIp != null" >
+        `login_ip` = #{loginIp},
+      </if>
+	  <if test="status != null" >
+        `status` = #{status},
+      </if>
+	  <if test="registerTime != null" >
+        `register_time` = #{registerTime},
+      </if>
+	  <if test="updateTime != null" >
+        `update_time` = #{updateTime},
+      </if>
+    </set>
+    WHERE `id` = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinmimoney.web.p2pnew.pojo.Admin" >
+	UPDATE `admin` SET
+        `user_code` = #{userCode},
+        `user_name` = #{userName},
+        `real_name` = #{realName},
+        `mobile_phone` = #{mobilePhone},
+        `pwd` = #{pwd},
+        `login_time` = #{loginTime},
+        `login_ip` = #{loginIp},
+        `status` = #{status},
+        `register_time` = #{registerTime},
+        `update_time` = #{updateTime}
+    WHERE `id` = #{id}
+  </update>
+  <update id="updateByCondition" parameterType="java.util.Map" >
+    UPDATE `admin`
+    <set>
+	  <if test="entity.userCode != null" >
+        `user_code` = #{entity.userCode},
+      </if>
+	  <if test="entity.userName != null" >
+        `user_name` = #{entity.userName},
+      </if>
+	  <if test="entity.realName != null" >
+        `real_name` = #{entity.realName},
+      </if>
+	  <if test="entity.mobilePhone != null" >
+        `mobile_phone` = #{entity.mobilePhone},
+      </if>
+	  <if test="entity.pwd != null" >
+        `pwd` = #{entity.pwd},
+      </if>
+	  <if test="entity.loginTime != null" >
+        `login_time` = #{entity.loginTime},
+      </if>
+	  <if test="entity.loginIp != null" >
+        `login_ip` = #{entity.loginIp},
+      </if>
+	  <if test="entity.status != null" >
+        `status` = #{entity.status},
+      </if>
+	  <if test="entity.registerTime != null" >
+        `register_time` = #{entity.registerTime},
+      </if>
+	  <if test="entity.updateTime != null" >
+        `update_time` = #{entity.updateTime},
+      </if>
+      <foreach collection="entity.nullColums" item="nullColum">
+        `${nullColum}` = NULL,
+      </foreach>
+    </set>
+    <include refid="map_params_where_condition" />
+  </update>
+  <update id="updateIncreateNumbers" parameterType="java.util.Map" >
+    UPDATE `admin`
+    <set>
+      <foreach collection="increateNumbers" item="numberCloums">
+        `${numberCloums.column}` = `${numberCloums.column}` + #{numberCloums.number},
+      </foreach>
+    </set>
+    <include refid="map_params_where_condition" />
+  </update>
+  <sql id="map_params_where_condition" >
+    <trim prefix="WHERE" prefixOverrides="AND">
+	  <if test="id != null" >
+        AND `id` = #{id}
+	  </if>
+	  <if test="userCode != null" >
+        AND `user_code` = #{userCode}
+	  </if>
+	  <if test="userName != null" >
+        AND `user_name` = #{userName}
+	  </if>
+	  <if test="realName != null" >
+        AND `real_name` = #{realName}
+	  </if>
+	  <if test="mobilePhone != null" >
+        AND `mobile_phone` = #{mobilePhone}
+	  </if>
+	  <if test="pwd != null" >
+        AND `pwd` = #{pwd}
+	  </if>
+	  <if test="loginTime != null" >
+        AND `login_time` = #{loginTime}
+	  </if>
+	  <if test="loginIp != null" >
+        AND `login_ip` = #{loginIp}
+	  </if>
+	  <if test="status != null" >
+        AND `status` = #{status}
+	  </if>
+	  <if test="registerTime != null" >
+        AND `register_time` = #{registerTime}
+	  </if>
+	  <if test="updateTime != null" >
+        AND `update_time` = #{updateTime}
+	  </if>
+	  <if test="condition != null">
+	  <if test="condition.id != null" >
+        AND `id` = #{condition.id}
+	  </if>
+	  <if test="condition.userCode != null" >
+        AND `user_code` = #{condition.userCode}
+	  </if>
+	  <if test="condition.userName != null" >
+        AND `user_name` = #{condition.userName}
+	  </if>
+	  <if test="condition.realName != null" >
+        AND `real_name` = #{condition.realName}
+	  </if>
+	  <if test="condition.mobilePhone != null" >
+        AND `mobile_phone` = #{condition.mobilePhone}
+	  </if>
+	  <if test="condition.pwd != null" >
+        AND `pwd` = #{condition.pwd}
+	  </if>
+	  <if test="condition.loginTime != null" >
+        AND `login_time` = #{condition.loginTime}
+	  </if>
+	  <if test="condition.loginIp != null" >
+        AND `login_ip` = #{condition.loginIp}
+	  </if>
+	  <if test="condition.status != null" >
+        AND `status` = #{condition.status}
+	  </if>
+	  <if test="condition.registerTime != null" >
+        AND `register_time` = #{condition.registerTime}
+	  </if>
+	  <if test="condition.updateTime != null" >
+        AND `update_time` = #{condition.updateTime}
+	  </if>
+	  </if>
+	  <if test="vo != null and !vo.expressionChainList.empty">
+        AND
+        <foreach collection="vo.expressionChainList" item="expressionChain" separator="OR">
+          <if test="!expressionChain.expressionList.empty">
+            <foreach collection="expressionChain.expressionList" item="expression" separator="AND">
+              <choose>
+                <when test="expression.type == 0">
+                  `${expression.column}` ${expression.operator}
+                </when>
+                <when test="expression.type == 1">
+                  `${expression.column}` ${expression.operator} #{expression.value}
+                </when>
+                <when test="expression.type == 2">
+                  `${expression.column}` ${expression.operator} #{expression.value} AND #{expression.value1}
+                </when>
+                <when test="expression.type == 3">
+                  `${expression.column}` ${expression.operator}
+                  <foreach collection="expression.values" item="value" open="(" separator="," close=")">
+                    #{value}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </if>
+        </foreach>
+      </if>
+      <if test="expressionChainList != null and !expressionChainList.empty">
+        AND
+        <foreach collection="expressionChainList" item="expressionChain" separator="OR">
+          <if test="!expressionChain.expressionList.empty">
+            <foreach collection="expressionChain.expressionList" item="expression" separator="AND">
+              <choose>
+                <when test="expression.type == 0">
+                  `${expression.column}` ${expression.operator}
+                </when>
+                <when test="expression.type == 1">
+                  `${expression.column}` ${expression.operator} #{expression.value}
+                </when>
+                <when test="expression.type == 2">
+                  `${expression.column}` ${expression.operator} #{expression.value} AND #{expression.value1}
+                </when>
+                <when test="expression.type == 3">
+                  `${expression.column}` ${expression.operator}
+                  <foreach collection="expression.values" item="value" open="(" separator="," close=")">
+                    #{value}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </if>
+        </foreach>
+      </if>
+      <include refid="map_params_where_condition_ext" />
+    </trim>
+  </sql>
+  <select id="getList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM `admin`
+    <include refid="map_params_where_condition" />
+    <if test="orderBy == null" >
+      ORDER BY `id` DESC
+    </if>
+    <if test="orderBy != null and orderBy != 'no'" >
+      ORDER BY ${orderBy}
+    </if>
+    <if test="pageBeginIndex != null and pageSize != null" >
+      LIMIT #{pageBeginIndex},#{pageSize}
+    </if>
+    <if test="pageBeginIndex == null and pageSize != null" >
+      LIMIT #{pageSize}
+    </if>
+    <if test="pageBeginIndex != null and pageSize == null" >
+      LIMIT #{pageBeginIndex}
+    </if>
+  </select>
+  <delete id="delete" parameterType="java.util.Map" >
+    DELETE
+    FROM `admin`
+    <include refid="map_params_where_condition" />
+  </delete>
+  <select id="getCount" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    SELECT COUNT(1)
+    FROM `admin`
+    <include refid="map_params_where_condition" />
+  </select>
+</mapper>

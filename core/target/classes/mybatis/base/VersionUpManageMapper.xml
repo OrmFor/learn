@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinmimoney.web.p2pnew.dao.VersionUpManageMapper" >
+  <resultMap id="BaseResultMap" type="com.yinmimoney.web.p2pnew.pojo.VersionUpManage" extends="associationMap">
+	<id column="id" property="id" />
+	<result column="version_code" property="versionCode" />
+	<result column="version_content" property="versionContent" />
+	<result column="version_number" property="versionNumber" />
+	<result column="version_level" property="versionLevel" />
+	<result column="update_url" property="updateUrl" />
+	<result column="channel" property="channel" />
+	<result column="add_time" property="addTime" />
+	<result column="update_time" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+		`id`
+		,`version_code`
+		,`version_content`
+		,`version_number`
+		,`version_level`
+		,`update_url`
+		,`channel`
+		,`add_time`
+		,`update_time`
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM `version_up_manage`
+    WHERE `id` = #{id}
+  </select>
+  <select id="getByCondition" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM `version_up_manage`
+    <include refid="map_params_where_condition" />
+    <if test="orderBy == null" >
+      ORDER BY `id` DESC
+    </if>
+    <if test="orderBy != null and orderBy != 'no'" >
+      ORDER BY ${orderBy}
+    </if>
+	LIMIT 1
+  </select>
+  <select id="aggregate" parameterType="java.util.Map" resultType="java.util.Map">
+    SELECT ${aggregate_sql} FROM `version_up_manage`
+    <include refid="map_params_where_condition" />
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    DELETE FROM `version_up_manage`
+    WHERE `id` = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.yinmimoney.web.p2pnew.pojo.VersionUpManage" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO `version_up_manage` (
+	  `version_code`
+	  ,`version_content`
+	  ,`version_number`
+	  ,`version_level`
+	  ,`update_url`
+	  ,`channel`
+	  ,`add_time`
+	  ,`update_time`
+      )
+    VALUES (
+		  
+		  #{versionCode}
+		  ,
+		  #{versionContent}
+		  ,
+		  #{versionNumber}
+		  ,
+		  #{versionLevel}
+		  ,
+		  #{updateUrl}
+		  ,
+		  #{channel}
+		  ,
+		  <if test="addTime != null" >
+			#{addTime}
+      </if>
+      <if test="addTime == null" >
+      NOW()
+		  </if>
+		  ,
+		  <if test="updateTime != null" >
+			#{updateTime}
+      </if>
+      <if test="updateTime == null" >
+      NOW()
+		  </if>
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinmimoney.web.p2pnew.pojo.VersionUpManage" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO `version_up_manage`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+		  <if test="versionCode != null" >
+			`version_code`,
+		  </if>
+		  <if test="versionContent != null" >
+			`version_content`,
+		  </if>
+		  <if test="versionNumber != null" >
+			`version_number`,
+		  </if>
+		  <if test="versionLevel != null" >
+			`version_level`,
+		  </if>
+		  <if test="updateUrl != null" >
+			`update_url`,
+		  </if>
+		  <if test="channel != null" >
+			`channel`,
+		  </if>
+			`add_time`,
+			`update_time`,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+		  <if test="versionCode != null" >
+			#{versionCode},
+		  </if>
+		  <if test="versionContent != null" >
+			#{versionContent},
+		  </if>
+		  <if test="versionNumber != null" >
+			#{versionNumber},
+		  </if>
+		  <if test="versionLevel != null" >
+			#{versionLevel},
+		  </if>
+		  <if test="updateUrl != null" >
+			#{updateUrl},
+		  </if>
+		  <if test="channel != null" >
+			#{channel},
+		  </if>
+		  <if test="addTime != null" >
+			#{addTime},
+      </if>
+      <if test="addTime == null" >
+      NOW(),
+		  </if>
+		  <if test="updateTime != null" >
+			#{updateTime},
+      </if>
+      <if test="updateTime == null" >
+      NOW(),
+		  </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinmimoney.web.p2pnew.pojo.VersionUpManage" >
+    UPDATE `version_up_manage`
+    <set >
+	  <if test="versionCode != null" >
+        `version_code` = #{versionCode},
+      </if>
+	  <if test="versionContent != null" >
+        `version_content` = #{versionContent},
+      </if>
+	  <if test="versionNumber != null" >
+        `version_number` = #{versionNumber},
+      </if>
+	  <if test="versionLevel != null" >
+        `version_level` = #{versionLevel},
+      </if>
+	  <if test="updateUrl != null" >
+        `update_url` = #{updateUrl},
+      </if>
+	  <if test="channel != null" >
+        `channel` = #{channel},
+      </if>
+	  <if test="addTime != null" >
+        `add_time` = #{addTime},
+      </if>
+	  <if test="updateTime != null" >
+        `update_time` = #{updateTime},
+      </if>
+    </set>
+    WHERE `id` = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinmimoney.web.p2pnew.pojo.VersionUpManage" >
+	UPDATE `version_up_manage` SET
+        `version_code` = #{versionCode},
+        `version_content` = #{versionContent},
+        `version_number` = #{versionNumber},
+        `version_level` = #{versionLevel},
+        `update_url` = #{updateUrl},
+        `channel` = #{channel},
+        `add_time` = #{addTime},
+        `update_time` = #{updateTime}
+    WHERE `id` = #{id}
+  </update>
+  <update id="updateByCondition" parameterType="java.util.Map" >
+    UPDATE `version_up_manage`
+    <set>
+	  <if test="entity.versionCode != null" >
+        `version_code` = #{entity.versionCode},
+      </if>
+	  <if test="entity.versionContent != null" >
+        `version_content` = #{entity.versionContent},
+      </if>
+	  <if test="entity.versionNumber != null" >
+        `version_number` = #{entity.versionNumber},
+      </if>
+	  <if test="entity.versionLevel != null" >
+        `version_level` = #{entity.versionLevel},
+      </if>
+	  <if test="entity.updateUrl != null" >
+        `update_url` = #{entity.updateUrl},
+      </if>
+	  <if test="entity.channel != null" >
+        `channel` = #{entity.channel},
+      </if>
+	  <if test="entity.addTime != null" >
+        `add_time` = #{entity.addTime},
+      </if>
+	  <if test="entity.updateTime != null" >
+        `update_time` = #{entity.updateTime},
+      </if>
+      <foreach collection="entity.nullColums" item="nullColum">
+        `${nullColum}` = NULL,
+      </foreach>
+    </set>
+    <include refid="map_params_where_condition" />
+  </update>
+  <update id="updateIncreateNumbers" parameterType="java.util.Map" >
+    UPDATE `version_up_manage`
+    <set>
+      <foreach collection="increateNumbers" item="numberCloums">
+        `${numberCloums.column}` = `${numberCloums.column}` + #{numberCloums.number},
+      </foreach>
+    </set>
+    <include refid="map_params_where_condition" />
+  </update>
+  <sql id="map_params_where_condition" >
+    <trim prefix="WHERE" prefixOverrides="AND">
+	  <if test="id != null" >
+        AND `id` = #{id}
+	  </if>
+	  <if test="versionCode != null" >
+        AND `version_code` = #{versionCode}
+	  </if>
+	  <if test="versionContent != null" >
+        AND `version_content` = #{versionContent}
+	  </if>
+	  <if test="versionNumber != null" >
+        AND `version_number` = #{versionNumber}
+	  </if>
+	  <if test="versionLevel != null" >
+        AND `version_level` = #{versionLevel}
+	  </if>
+	  <if test="updateUrl != null" >
+        AND `update_url` = #{updateUrl}
+	  </if>
+	  <if test="channel != null" >
+        AND `channel` = #{channel}
+	  </if>
+	  <if test="addTime != null" >
+        AND `add_time` = #{addTime}
+	  </if>
+	  <if test="updateTime != null" >
+        AND `update_time` = #{updateTime}
+	  </if>
+	  <if test="condition != null">
+	  <if test="condition.id != null" >
+        AND `id` = #{condition.id}
+	  </if>
+	  <if test="condition.versionCode != null" >
+        AND `version_code` = #{condition.versionCode}
+	  </if>
+	  <if test="condition.versionContent != null" >
+        AND `version_content` = #{condition.versionContent}
+	  </if>
+	  <if test="condition.versionNumber != null" >
+        AND `version_number` = #{condition.versionNumber}
+	  </if>
+	  <if test="condition.versionLevel != null" >
+        AND `version_level` = #{condition.versionLevel}
+	  </if>
+	  <if test="condition.updateUrl != null" >
+        AND `update_url` = #{condition.updateUrl}
+	  </if>
+	  <if test="condition.channel != null" >
+        AND `channel` = #{condition.channel}
+	  </if>
+	  <if test="condition.addTime != null" >
+        AND `add_time` = #{condition.addTime}
+	  </if>
+	  <if test="condition.updateTime != null" >
+        AND `update_time` = #{condition.updateTime}
+	  </if>
+	  </if>
+	  <if test="vo != null and !vo.expressionChainList.empty">
+        AND
+        <foreach collection="vo.expressionChainList" item="expressionChain" separator="OR">
+          <if test="!expressionChain.expressionList.empty">
+            <foreach collection="expressionChain.expressionList" item="expression" separator="AND">
+              <choose>
+                <when test="expression.type == 0">
+                  `${expression.column}` ${expression.operator}
+                </when>
+                <when test="expression.type == 1">
+                  `${expression.column}` ${expression.operator} #{expression.value}
+                </when>
+                <when test="expression.type == 2">
+                  `${expression.column}` ${expression.operator} #{expression.value} AND #{expression.value1}
+                </when>
+                <when test="expression.type == 3">
+                  `${expression.column}` ${expression.operator}
+                  <foreach collection="expression.values" item="value" open="(" separator="," close=")">
+                    #{value}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </if>
+        </foreach>
+      </if>
+      <if test="expressionChainList != null and !expressionChainList.empty">
+        AND
+        <foreach collection="expressionChainList" item="expressionChain" separator="OR">
+          <if test="!expressionChain.expressionList.empty">
+            <foreach collection="expressionChain.expressionList" item="expression" separator="AND">
+              <choose>
+                <when test="expression.type == 0">
+                  `${expression.column}` ${expression.operator}
+                </when>
+                <when test="expression.type == 1">
+                  `${expression.column}` ${expression.operator} #{expression.value}
+                </when>
+                <when test="expression.type == 2">
+                  `${expression.column}` ${expression.operator} #{expression.value} AND #{expression.value1}
+                </when>
+                <when test="expression.type == 3">
+                  `${expression.column}` ${expression.operator}
+                  <foreach collection="expression.values" item="value" open="(" separator="," close=")">
+                    #{value}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </if>
+        </foreach>
+      </if>
+      <include refid="map_params_where_condition_ext" />
+    </trim>
+  </sql>
+  <select id="getList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM `version_up_manage`
+    <include refid="map_params_where_condition" />
+    <if test="orderBy == null" >
+      ORDER BY `id` DESC
+    </if>
+    <if test="orderBy != null and orderBy != 'no'" >
+      ORDER BY ${orderBy}
+    </if>
+    <if test="pageBeginIndex != null and pageSize != null" >
+      LIMIT #{pageBeginIndex},#{pageSize}
+    </if>
+    <if test="pageBeginIndex == null and pageSize != null" >
+      LIMIT #{pageSize}
+    </if>
+    <if test="pageBeginIndex != null and pageSize == null" >
+      LIMIT #{pageBeginIndex}
+    </if>
+  </select>
+  <delete id="delete" parameterType="java.util.Map" >
+    DELETE
+    FROM `version_up_manage`
+    <include refid="map_params_where_condition" />
+  </delete>
+  <select id="getCount" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    SELECT COUNT(1)
+    FROM `version_up_manage`
+    <include refid="map_params_where_condition" />
+  </select>
+</mapper>

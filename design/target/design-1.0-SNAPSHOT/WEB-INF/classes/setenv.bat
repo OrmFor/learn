@@ -1,0 +1,1 @@
+set JAVA_OPTS=-server  -Xmx50m -Xms50m -Xmn100M -Xss512k  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=F:\apache-tomcat-7.0\apache-tomcat-7.0.84\bin\logs\%date:~0,4%%date:~5,2%%date:~8,2%%time:~0,2%%time:~3,2%%time:~6,2%_heapdump.hprof

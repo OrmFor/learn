@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinmimoney.web.p2pnew.dao.UserMapper" >
+  <resultMap id="associationMap" type="com.yinmimoney.web.p2pnew.pojo.User" >
+      <association column="user_code" property="insuredPersonList"
+                   select="com.yinmimoney.web.p2pnew.dao.InsuredPersonMapper.getListByUserCode" fetchType="lazy"/>
+      <association column="user_code" property="insurancePolicyList"
+                   select="com.yinmimoney.web.p2pnew.dao.InsurancePolicyMapper.getOKListByUserCode" fetchType="lazy"/>
+  </resultMap>
+  <sql id="map_params_where_condition_ext" >
+	<if test="extConditions != null">
+		<!-- 扩展条件 -->
+	</if>
+  </sql>
+
+    <select id="selectByUserCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM `user`
+        WHERE `user_code` = #{userCode}
+    </select>
+
+    <select id="getListByCondition" resultMap="BaseResultMap" parameterType="java.util.Map">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM `user` u
+        <trim prefix="WHERE" prefixOverrides="AND">
+              <if test="mobile!=null">
+                  AND u.mobile_phone=#{mobile}
+              </if>
+              <if test="realName!=null">
+                  AND u.real_name=#{realName}
+              </if>
+            <if test="startTime!=null">
+                AND date(register_time) <![CDATA[ >= ]]> date(#{startTime})
+            </if>
+            <if test="endTime!=null">
+                AND date(register_time) <![CDATA[ <= ]]> date(#{endTime})
+            </if>
+            <if test="isInsurance!=null">
+                <if test="isInsurance==1">
+                    AND u.user_code IN (SELECT DISTINCT user_code FROM insurance_policy)
+                </if>
+                <if test="isInsurance==0">
+                    AND u.user_code NOT IN (SELECT DISTINCT user_code FROM insurance_policy)
+                </if>
+            </if>
+        </trim>
+        <if test="pageSize!=null and indexNumber!=null">
+            limit #{indexNumber},#{pageSize}
+        </if>
+    </select>
+    <select id="getListCountByCondition" resultType="java.lang.Integer" parameterType="java.util.Map">
+        SELECT
+        COUNT(1)
+        FROM `user` u
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="mobile!=null">
+                AND u.mobile_phone=#{mobile}
+            </if>
+            <if test="realName!=null">
+                AND u.real_name=#{realName}
+            </if>
+            <if test="startTime!=null">
+                AND date(register_time) <![CDATA[ >= ]]> date(#{startTime})
+            </if>
+            <if test="endTime!=null">
+                AND date(register_time) <![CDATA[ <= ]]> date(#{endTime})
+            </if>
+            <if test="isInsurance!=null">
+                <if test="isInsurance==1">
+                      AND u.user_code IN (SELECT DISTINCT user_code FROM insurance_policy)
+                </if>
+                <if test="isInsurance==0">
+                    AND u.user_code NOT IN (SELECT DISTINCT user_code FROM insurance_policy)
+                </if>
+            </if>
+        </trim>
+    </select>
+
+    <select id="getUserScaleBySex" resultType="java.util.Map">
+        SELECT COUNT(1) AS 'count',sex AS 'sex' FROM user GROUP BY sex
+    </select>
+    <select id="getUserScaleByLifeStatus" resultType="java.util.Map">
+        SELECT COUNT(1) AS 'count',life_status AS 'lifeStatus' FROM user GROUP BY life_status
+    </select>
+    <select id="getUserScaleByAgeRange" resultType="java.util.Map">
+        SELECT COUNT(1) AS count,t2.ageType AS ageType FROM
+       (SELECT
+        t1.age,CASE
+        WHEN t1.age <![CDATA[ >= ]]> DATE_FORMAT(TIMESTAMPADD(YEAR,-18,CURDATE()),'%Y') THEN '0-18岁'
+        WHEN t1.age <![CDATA[ >= ]]> DATE_FORMAT(TIMESTAMPADD(YEAR,-25,CURDATE()),'%Y') THEN '19-25岁'
+        WHEN t1.age <![CDATA[ >= ]]> DATE_FORMAT(TIMESTAMPADD(YEAR,-35,CURDATE()),'%Y') THEN '26-35岁'
+        WHEN t1.age <![CDATA[ >= ]]> DATE_FORMAT(TIMESTAMPADD(YEAR,-45,CURDATE()),'%Y') THEN '36-45岁'
+        WHEN t1.age <![CDATA[ >= ]]> DATE_FORMAT(TIMESTAMPADD(YEAR,-59,CURDATE()),'%Y') THEN '45-59岁'
+        WHEN t1.age <![CDATA[ >= ]]> DATE_FORMAT(TIMESTAMPADD(YEAR,-150,CURDATE()),'%Y') THEN '60岁以上'
+        ELSE '未知'
+        END AS ageType FROM
+        (SELECT SUBSTR(IFNULL(ip.card_no,0000000000000000) FROM 7 FOR 4) as age FROM user ip) t1) t2 GROUP BY t2.ageType
+    </select>
+</mapper>

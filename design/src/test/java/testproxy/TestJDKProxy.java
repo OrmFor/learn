@@ -1,9 +1,9 @@
 package testproxy;
 
-import com.design.learn.basejava.proxy.CGLIBProxy;
 import com.design.learn.basejava.proxy.CustomAspect;
+import com.design.learn.basejava.proxy.JDKProxy;
 
-public class TestCGLIBProxy {
+public class TestJDKProxy {
 
     public static void main(String[] args) {
 
@@ -15,7 +15,7 @@ public class TestCGLIBProxy {
         userService.saveUser(user);
 
         //使用代理
-        UserService proxyUserService = (UserService) CGLIBProxy.createProxy(userService, new CustomAspect());
+        UserService proxyUserService = (UserService) JDKProxy.createProxy(userService, new CustomAspect());
         user.setPassword("q123456789`1");
         user.setUserName("wwy1");
         proxyUserService.saveUser(user);

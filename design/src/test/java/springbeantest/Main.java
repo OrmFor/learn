@@ -1,4 +1,23 @@
 package springbeantest;
 
-public class Main {
+import base.BaseTest;
+import com.design.learn.springbean.MySpringBeanPostProcessor;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+public class Main extends BaseTest {
+    @Autowired
+    private MySpringBeanPostProcessor mySpringBeanPostProcessor;
+   /* @Autowired
+    private MySpringBean mySpringBean;*/
+
+    @Test
+    public void test(){
+        //ApplicationContext ac = new FileSystemXmlApplicationContext("src/main/resources/application.xml");
+        ApplicationContext ac= new ClassPathXmlApplicationContext("application.xml");
+        ac.getBean("mySpringBean");
+    }
 }

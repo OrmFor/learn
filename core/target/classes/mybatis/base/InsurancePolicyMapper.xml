@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinmimoney.web.p2pnew.dao.InsurancePolicyMapper" >
+  <resultMap id="BaseResultMap" type="com.yinmimoney.web.p2pnew.pojo.InsurancePolicy" extends="associationMap">
+	<id column="id" property="id" />
+	<result column="user_code" property="userCode" />
+	<result column="policy_no" property="policyNo" />
+	<result column="policy_fee" property="policyFee" />
+	<result column="product_code" property="productCode" />
+	<result column="product_name" property="productName" />
+	<result column="plan_code" property="planCode" />
+	<result column="plan_name" property="planName" />
+	<result column="insured_person_code" property="insuredPersonCode" />
+	<result column="insured_person_name" property="insuredPersonName" />
+	<result column="guarantee_time_start" property="guaranteeTimeStart" />
+	<result column="guarantee_time_end" property="guaranteeTimeEnd" />
+	<result column="policy_status" property="policyStatus" />
+	<result column="policy_time" property="policyTime" />
+	<result column="pay_no" property="payNo" />
+	<result column="out_pay_no" property="outPayNo" />
+	<result column="pay_type" property="payType" />
+	<result column="pay_status" property="payStatus" />
+	<result column="pay_time" property="payTime" />
+	<result column="order_time" property="orderTime" />
+	<result column="update_time" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+		`id`
+		,`user_code`
+		,`policy_no`
+		,`policy_fee`
+		,`product_code`
+		,`product_name`
+		,`plan_code`
+		,`plan_name`
+		,`insured_person_code`
+		,`insured_person_name`
+		,`guarantee_time_start`
+		,`guarantee_time_end`
+		,`policy_status`
+		,`policy_time`
+		,`pay_no`
+		,`out_pay_no`
+		,`pay_type`
+		,`pay_status`
+		,`pay_time`
+		,`order_time`
+		,`update_time`
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM `insurance_policy`
+    WHERE `id` = #{id}
+  </select>
+  <select id="getByCondition" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM `insurance_policy`
+    <include refid="map_params_where_condition" />
+    <if test="orderBy == null" >
+      ORDER BY `id` DESC
+    </if>
+    <if test="orderBy != null and orderBy != 'no'" >
+      ORDER BY ${orderBy}
+    </if>
+	LIMIT 1
+  </select>
+  <select id="aggregate" parameterType="java.util.Map" resultType="java.util.Map">
+    SELECT ${aggregate_sql} FROM `insurance_policy`
+    <include refid="map_params_where_condition" />
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    DELETE FROM `insurance_policy`
+    WHERE `id` = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.yinmimoney.web.p2pnew.pojo.InsurancePolicy" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO `insurance_policy` (
+	  `user_code`
+	  ,`policy_no`
+	  ,`policy_fee`
+	  ,`product_code`
+	  ,`product_name`
+	  ,`plan_code`
+	  ,`plan_name`
+	  ,`insured_person_code`
+	  ,`insured_person_name`
+	  ,`guarantee_time_start`
+	  ,`guarantee_time_end`
+	  ,`policy_status`
+	  ,`policy_time`
+	  ,`pay_no`
+	  ,`out_pay_no`
+	  ,`pay_type`
+	  ,`pay_status`
+	  ,`pay_time`
+	  ,`order_time`
+	  ,`update_time`
+      )
+    VALUES (
+		  
+		  #{userCode}
+		  ,
+		  #{policyNo}
+		  ,
+		  #{policyFee}
+		  ,
+		  #{productCode}
+		  ,
+		  #{productName}
+		  ,
+		  #{planCode}
+		  ,
+		  #{planName}
+		  ,
+		  #{insuredPersonCode}
+		  ,
+		  #{insuredPersonName}
+		  ,
+		  <if test="guaranteeTimeStart != null" >
+			#{guaranteeTimeStart}
+      </if>
+      <if test="guaranteeTimeStart == null" >
+      NOW()
+		  </if>
+		  ,
+		  <if test="guaranteeTimeEnd != null" >
+			#{guaranteeTimeEnd}
+      </if>
+      <if test="guaranteeTimeEnd == null" >
+      NOW()
+		  </if>
+		  ,
+		  #{policyStatus}
+		  ,
+		  #{policyTime}
+		  ,
+		  #{payNo}
+		  ,
+		  #{outPayNo}
+		  ,
+		  #{payType}
+		  ,
+		  #{payStatus}
+		  ,
+		  #{payTime}
+		  ,
+		  <if test="orderTime != null" >
+			#{orderTime}
+      </if>
+      <if test="orderTime == null" >
+      NOW()
+		  </if>
+		  ,
+		  <if test="updateTime != null" >
+			#{updateTime}
+      </if>
+      <if test="updateTime == null" >
+      NOW()
+		  </if>
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinmimoney.web.p2pnew.pojo.InsurancePolicy" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO `insurance_policy`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+		  <if test="userCode != null" >
+			`user_code`,
+		  </if>
+		  <if test="policyNo != null" >
+			`policy_no`,
+		  </if>
+		  <if test="policyFee != null" >
+			`policy_fee`,
+		  </if>
+		  <if test="productCode != null" >
+			`product_code`,
+		  </if>
+		  <if test="productName != null" >
+			`product_name`,
+		  </if>
+		  <if test="planCode != null" >
+			`plan_code`,
+		  </if>
+		  <if test="planName != null" >
+			`plan_name`,
+		  </if>
+		  <if test="insuredPersonCode != null" >
+			`insured_person_code`,
+		  </if>
+		  <if test="insuredPersonName != null" >
+			`insured_person_name`,
+		  </if>
+			`guarantee_time_start`,
+			`guarantee_time_end`,
+		  <if test="policyStatus != null" >
+			`policy_status`,
+		  </if>
+		  <if test="policyTime != null" >
+			`policy_time`,
+		  </if>
+		  <if test="payNo != null" >
+			`pay_no`,
+		  </if>
+		  <if test="outPayNo != null" >
+			`out_pay_no`,
+		  </if>
+		  <if test="payType != null" >
+			`pay_type`,
+		  </if>
+		  <if test="payStatus != null" >
+			`pay_status`,
+		  </if>
+		  <if test="payTime != null" >
+			`pay_time`,
+		  </if>
+			`order_time`,
+			`update_time`,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+		  <if test="userCode != null" >
+			#{userCode},
+		  </if>
+		  <if test="policyNo != null" >
+			#{policyNo},
+		  </if>
+		  <if test="policyFee != null" >
+			#{policyFee},
+		  </if>
+		  <if test="productCode != null" >
+			#{productCode},
+		  </if>
+		  <if test="productName != null" >
+			#{productName},
+		  </if>
+		  <if test="planCode != null" >
+			#{planCode},
+		  </if>
+		  <if test="planName != null" >
+			#{planName},
+		  </if>
+		  <if test="insuredPersonCode != null" >
+			#{insuredPersonCode},
+		  </if>
+		  <if test="insuredPersonName != null" >
+			#{insuredPersonName},
+		  </if>
+		  <if test="guaranteeTimeStart != null" >
+			#{guaranteeTimeStart},
+      </if>
+      <if test="guaranteeTimeStart == null" >
+      NOW(),
+		  </if>
+		  <if test="guaranteeTimeEnd != null" >
+			#{guaranteeTimeEnd},
+      </if>
+      <if test="guaranteeTimeEnd == null" >
+      NOW(),
+		  </if>
+		  <if test="policyStatus != null" >
+			#{policyStatus},
+		  </if>
+		  <if test="policyTime != null" >
+			#{policyTime},
+		  </if>
+		  <if test="payNo != null" >
+			#{payNo},
+		  </if>
+		  <if test="outPayNo != null" >
+			#{outPayNo},
+		  </if>
+		  <if test="payType != null" >
+			#{payType},
+		  </if>
+		  <if test="payStatus != null" >
+			#{payStatus},
+		  </if>
+		  <if test="payTime != null" >
+			#{payTime},
+		  </if>
+		  <if test="orderTime != null" >
+			#{orderTime},
+      </if>
+      <if test="orderTime == null" >
+      NOW(),
+		  </if>
+		  <if test="updateTime != null" >
+			#{updateTime},
+      </if>
+      <if test="updateTime == null" >
+      NOW(),
+		  </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinmimoney.web.p2pnew.pojo.InsurancePolicy" >
+    UPDATE `insurance_policy`
+    <set >
+	  <if test="userCode != null" >
+        `user_code` = #{userCode},
+      </if>
+	  <if test="policyNo != null" >
+        `policy_no` = #{policyNo},
+      </if>
+	  <if test="policyFee != null" >
+        `policy_fee` = #{policyFee},
+      </if>
+	  <if test="productCode != null" >
+        `product_code` = #{productCode},
+      </if>
+	  <if test="productName != null" >
+        `product_name` = #{productName},
+      </if>
+	  <if test="planCode != null" >
+        `plan_code` = #{planCode},
+      </if>
+	  <if test="planName != null" >
+        `plan_name` = #{planName},
+      </if>
+	  <if test="insuredPersonCode != null" >
+        `insured_person_code` = #{insuredPersonCode},
+      </if>
+	  <if test="insuredPersonName != null" >
+        `insured_person_name` = #{insuredPersonName},
+      </if>
+	  <if test="guaranteeTimeStart != null" >
+        `guarantee_time_start` = #{guaranteeTimeStart},
+      </if>
+	  <if test="guaranteeTimeEnd != null" >
+        `guarantee_time_end` = #{guaranteeTimeEnd},
+      </if>
+	  <if test="policyStatus != null" >
+        `policy_status` = #{policyStatus},
+      </if>
+	  <if test="policyTime != null" >
+        `policy_time` = #{policyTime},
+      </if>
+	  <if test="payNo != null" >
+        `pay_no` = #{payNo},
+      </if>
+	  <if test="outPayNo != null" >
+        `out_pay_no` = #{outPayNo},
+      </if>
+	  <if test="payType != null" >
+        `pay_type` = #{payType},
+      </if>
+	  <if test="payStatus != null" >
+        `pay_status` = #{payStatus},
+      </if>
+	  <if test="payTime != null" >
+        `pay_time` = #{payTime},
+      </if>
+	  <if test="orderTime != null" >
+        `order_time` = #{orderTime},
+      </if>
+	  <if test="updateTime != null" >
+        `update_time` = #{updateTime},
+      </if>
+    </set>
+    WHERE `id` = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinmimoney.web.p2pnew.pojo.InsurancePolicy" >
+	UPDATE `insurance_policy` SET
+        `user_code` = #{userCode},
+        `policy_no` = #{policyNo},
+        `policy_fee` = #{policyFee},
+        `product_code` = #{productCode},
+        `product_name` = #{productName},
+        `plan_code` = #{planCode},
+        `plan_name` = #{planName},
+        `insured_person_code` = #{insuredPersonCode},
+        `insured_person_name` = #{insuredPersonName},
+        `guarantee_time_start` = #{guaranteeTimeStart},
+        `guarantee_time_end` = #{guaranteeTimeEnd},
+        `policy_status` = #{policyStatus},
+        `policy_time` = #{policyTime},
+        `pay_no` = #{payNo},
+        `out_pay_no` = #{outPayNo},
+        `pay_type` = #{payType},
+        `pay_status` = #{payStatus},
+        `pay_time` = #{payTime},
+        `order_time` = #{orderTime},
+        `update_time` = #{updateTime}
+    WHERE `id` = #{id}
+  </update>
+  <update id="updateByCondition" parameterType="java.util.Map" >
+    UPDATE `insurance_policy`
+    <set>
+	  <if test="entity.userCode != null" >
+        `user_code` = #{entity.userCode},
+      </if>
+	  <if test="entity.policyNo != null" >
+        `policy_no` = #{entity.policyNo},
+      </if>
+	  <if test="entity.policyFee != null" >
+        `policy_fee` = #{entity.policyFee},
+      </if>
+	  <if test="entity.productCode != null" >
+        `product_code` = #{entity.productCode},
+      </if>
+	  <if test="entity.productName != null" >
+        `product_name` = #{entity.productName},
+      </if>
+	  <if test="entity.planCode != null" >
+        `plan_code` = #{entity.planCode},
+      </if>
+	  <if test="entity.planName != null" >
+        `plan_name` = #{entity.planName},
+      </if>
+	  <if test="entity.insuredPersonCode != null" >
+        `insured_person_code` = #{entity.insuredPersonCode},
+      </if>
+	  <if test="entity.insuredPersonName != null" >
+        `insured_person_name` = #{entity.insuredPersonName},
+      </if>
+	  <if test="entity.guaranteeTimeStart != null" >
+        `guarantee_time_start` = #{entity.guaranteeTimeStart},
+      </if>
+	  <if test="entity.guaranteeTimeEnd != null" >
+        `guarantee_time_end` = #{entity.guaranteeTimeEnd},
+      </if>
+	  <if test="entity.policyStatus != null" >
+        `policy_status` = #{entity.policyStatus},
+      </if>
+	  <if test="entity.policyTime != null" >
+        `policy_time` = #{entity.policyTime},
+      </if>
+	  <if test="entity.payNo != null" >
+        `pay_no` = #{entity.payNo},
+      </if>
+	  <if test="entity.outPayNo != null" >
+        `out_pay_no` = #{entity.outPayNo},
+      </if>
+	  <if test="entity.payType != null" >
+        `pay_type` = #{entity.payType},
+      </if>
+	  <if test="entity.payStatus != null" >
+        `pay_status` = #{entity.payStatus},
+      </if>
+	  <if test="entity.payTime != null" >
+        `pay_time` = #{entity.payTime},
+      </if>
+	  <if test="entity.orderTime != null" >
+        `order_time` = #{entity.orderTime},
+      </if>
+	  <if test="entity.updateTime != null" >
+        `update_time` = #{entity.updateTime},
+      </if>
+      <foreach collection="entity.nullColums" item="nullColum">
+        `${nullColum}` = NULL,
+      </foreach>
+    </set>
+    <include refid="map_params_where_condition" />
+  </update>
+  <update id="updateIncreateNumbers" parameterType="java.util.Map" >
+    UPDATE `insurance_policy`
+    <set>
+      <foreach collection="increateNumbers" item="numberCloums">
+        `${numberCloums.column}` = `${numberCloums.column}` + #{numberCloums.number},
+      </foreach>
+    </set>
+    <include refid="map_params_where_condition" />
+  </update>
+  <sql id="map_params_where_condition" >
+    <trim prefix="WHERE" prefixOverrides="AND">
+	  <if test="id != null" >
+        AND `id` = #{id}
+	  </if>
+	  <if test="userCode != null" >
+        AND `user_code` = #{userCode}
+	  </if>
+	  <if test="policyNo != null" >
+        AND `policy_no` = #{policyNo}
+	  </if>
+	  <if test="policyFee != null" >
+        AND `policy_fee` = #{policyFee}
+	  </if>
+	  <if test="productCode != null" >
+        AND `product_code` = #{productCode}
+	  </if>
+	  <if test="productName != null" >
+        AND `product_name` = #{productName}
+	  </if>
+	  <if test="planCode != null" >
+        AND `plan_code` = #{planCode}
+	  </if>
+	  <if test="planName != null" >
+        AND `plan_name` = #{planName}
+	  </if>
+	  <if test="insuredPersonCode != null" >
+        AND `insured_person_code` = #{insuredPersonCode}
+	  </if>
+	  <if test="insuredPersonName != null" >
+        AND `insured_person_name` = #{insuredPersonName}
+	  </if>
+	  <if test="guaranteeTimeStart != null" >
+        AND `guarantee_time_start` = #{guaranteeTimeStart}
+	  </if>
+	  <if test="guaranteeTimeEnd != null" >
+        AND `guarantee_time_end` = #{guaranteeTimeEnd}
+	  </if>
+	  <if test="policyStatus != null" >
+        AND `policy_status` = #{policyStatus}
+	  </if>
+	  <if test="policyTime != null" >
+        AND `policy_time` = #{policyTime}
+	  </if>
+	  <if test="payNo != null" >
+        AND `pay_no` = #{payNo}
+	  </if>
+	  <if test="outPayNo != null" >
+        AND `out_pay_no` = #{outPayNo}
+	  </if>
+	  <if test="payType != null" >
+        AND `pay_type` = #{payType}
+	  </if>
+	  <if test="payStatus != null" >
+        AND `pay_status` = #{payStatus}
+	  </if>
+	  <if test="payTime != null" >
+        AND `pay_time` = #{payTime}
+	  </if>
+	  <if test="orderTime != null" >
+        AND `order_time` = #{orderTime}
+	  </if>
+	  <if test="updateTime != null" >
+        AND `update_time` = #{updateTime}
+	  </if>
+	  <if test="condition != null">
+	  <if test="condition.id != null" >
+        AND `id` = #{condition.id}
+	  </if>
+	  <if test="condition.userCode != null" >
+        AND `user_code` = #{condition.userCode}
+	  </if>
+	  <if test="condition.policyNo != null" >
+        AND `policy_no` = #{condition.policyNo}
+	  </if>
+	  <if test="condition.policyFee != null" >
+        AND `policy_fee` = #{condition.policyFee}
+	  </if>
+	  <if test="condition.productCode != null" >
+        AND `product_code` = #{condition.productCode}
+	  </if>
+	  <if test="condition.productName != null" >
+        AND `product_name` = #{condition.productName}
+	  </if>
+	  <if test="condition.planCode != null" >
+        AND `plan_code` = #{condition.planCode}
+	  </if>
+	  <if test="condition.planName != null" >
+        AND `plan_name` = #{condition.planName}
+	  </if>
+	  <if test="condition.insuredPersonCode != null" >
+        AND `insured_person_code` = #{condition.insuredPersonCode}
+	  </if>
+	  <if test="condition.insuredPersonName != null" >
+        AND `insured_person_name` = #{condition.insuredPersonName}
+	  </if>
+	  <if test="condition.guaranteeTimeStart != null" >
+        AND `guarantee_time_start` = #{condition.guaranteeTimeStart}
+	  </if>
+	  <if test="condition.guaranteeTimeEnd != null" >
+        AND `guarantee_time_end` = #{condition.guaranteeTimeEnd}
+	  </if>
+	  <if test="condition.policyStatus != null" >
+        AND `policy_status` = #{condition.policyStatus}
+	  </if>
+	  <if test="condition.policyTime != null" >
+        AND `policy_time` = #{condition.policyTime}
+	  </if>
+	  <if test="condition.payNo != null" >
+        AND `pay_no` = #{condition.payNo}
+	  </if>
+	  <if test="condition.outPayNo != null" >
+        AND `out_pay_no` = #{condition.outPayNo}
+	  </if>
+	  <if test="condition.payType != null" >
+        AND `pay_type` = #{condition.payType}
+	  </if>
+	  <if test="condition.payStatus != null" >
+        AND `pay_status` = #{condition.payStatus}
+	  </if>
+	  <if test="condition.payTime != null" >
+        AND `pay_time` = #{condition.payTime}
+	  </if>
+	  <if test="condition.orderTime != null" >
+        AND `order_time` = #{condition.orderTime}
+	  </if>
+	  <if test="condition.updateTime != null" >
+        AND `update_time` = #{condition.updateTime}
+	  </if>
+	  </if>
+	  <if test="vo != null and !vo.expressionChainList.empty">
+        AND
+        <foreach collection="vo.expressionChainList" item="expressionChain" separator="OR">
+          <if test="!expressionChain.expressionList.empty">
+            <foreach collection="expressionChain.expressionList" item="expression" separator="AND">
+              <choose>
+                <when test="expression.type == 0">
+                  `${expression.column}` ${expression.operator}
+                </when>
+                <when test="expression.type == 1">
+                  `${expression.column}` ${expression.operator} #{expression.value}
+                </when>
+                <when test="expression.type == 2">
+                  `${expression.column}` ${expression.operator} #{expression.value} AND #{expression.value1}
+                </when>
+                <when test="expression.type == 3">
+                  `${expression.column}` ${expression.operator}
+                  <foreach collection="expression.values" item="value" open="(" separator="," close=")">
+                    #{value}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </if>
+        </foreach>
+      </if>
+      <if test="expressionChainList != null and !expressionChainList.empty">
+        AND
+        <foreach collection="expressionChainList" item="expressionChain" separator="OR">
+          <if test="!expressionChain.expressionList.empty">
+            <foreach collection="expressionChain.expressionList" item="expression" separator="AND">
+              <choose>
+                <when test="expression.type == 0">
+                  `${expression.column}` ${expression.operator}
+                </when>
+                <when test="expression.type == 1">
+                  `${expression.column}` ${expression.operator} #{expression.value}
+                </when>
+                <when test="expression.type == 2">
+                  `${expression.column}` ${expression.operator} #{expression.value} AND #{expression.value1}
+                </when>
+                <when test="expression.type == 3">
+                  `${expression.column}` ${expression.operator}
+                  <foreach collection="expression.values" item="value" open="(" separator="," close=")">
+                    #{value}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </if>
+        </foreach>
+      </if>
+      <include refid="map_params_where_condition_ext" />
+    </trim>
+  </sql>
+  <select id="getList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM `insurance_policy`
+    <include refid="map_params_where_condition" />
+    <if test="orderBy == null" >
+      ORDER BY `id` DESC
+    </if>
+    <if test="orderBy != null and orderBy != 'no'" >
+      ORDER BY ${orderBy}
+    </if>
+    <if test="pageBeginIndex != null and pageSize != null" >
+      LIMIT #{pageBeginIndex},#{pageSize}
+    </if>
+    <if test="pageBeginIndex == null and pageSize != null" >
+      LIMIT #{pageSize}
+    </if>
+    <if test="pageBeginIndex != null and pageSize == null" >
+      LIMIT #{pageBeginIndex}
+    </if>
+  </select>
+  <delete id="delete" parameterType="java.util.Map" >
+    DELETE
+    FROM `insurance_policy`
+    <include refid="map_params_where_condition" />
+  </delete>
+  <select id="getCount" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    SELECT COUNT(1)
+    FROM `insurance_policy`
+    <include refid="map_params_where_condition" />
+  </select>
+</mapper>
