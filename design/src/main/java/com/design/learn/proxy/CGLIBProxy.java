@@ -1,4 +1,4 @@
-package com.design.learn.basejava.proxy;
+package com.design.learn.proxy;
 
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;

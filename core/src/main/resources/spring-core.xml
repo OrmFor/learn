@@ -96,7 +96,7 @@
 		<aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
 	</aop:config>
 
-	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+	<tx:annotation-driven transaction-manager="transactionManager" dynamicJDKProxy-target-class="true"/>
 	
 	<!-- druid监控 -->
 	<bean name="druid-stat-interceptor" class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor" />
@@ -109,7 +109,7 @@
         </property>
     </bean>
     
-    <aop:config proxy-target-class="true">
+    <aop:config dynamicJDKProxy-target-class="true">
         <aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut" />
     </aop:config>
     

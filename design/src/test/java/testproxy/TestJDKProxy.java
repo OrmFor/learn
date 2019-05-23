@@ -1,7 +1,7 @@
 package testproxy;
 
-import com.design.learn.basejava.proxy.CustomAspect;
-import com.design.learn.basejava.proxy.JDKProxy;
+import com.design.learn.proxy.CustomAspect;
+import com.design.learn.proxy.JDKProxy;
 
 public class TestJDKProxy {
 

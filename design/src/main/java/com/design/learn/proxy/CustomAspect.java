@@ -1,4 +1,4 @@
-package com.design.learn.basejava.proxy;
+package com.design.learn.proxy;
 
 public class CustomAspect {
 

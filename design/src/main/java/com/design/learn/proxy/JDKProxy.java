@@ -1,4 +1,4 @@
-package com.design.learn.basejava.proxy;
+package com.design.learn.proxy;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

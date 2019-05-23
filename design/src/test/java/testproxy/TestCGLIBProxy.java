@@ -1,7 +1,7 @@
 package testproxy;
 
-import com.design.learn.basejava.proxy.CGLIBProxy;
-import com.design.learn.basejava.proxy.CustomAspect;
+import com.design.learn.proxy.CGLIBProxy;
+import com.design.learn.proxy.CustomAspect;
 
 public class TestCGLIBProxy {
 

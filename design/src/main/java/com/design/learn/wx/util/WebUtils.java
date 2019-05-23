@@ -331,11 +331,11 @@ public class WebUtils {
 
         private static HttpURLConnection getConnection(URL url, String method, String ctype,
                                                        String proxyHost, int proxyPort) throws IOException {
-            Proxy proxy = new Proxy(Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
+            DynamicJDKProxy proxy = new DynamicJDKProxy(Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
             return getConnection(url, method, ctype, proxy);
         }
 
-        private static HttpURLConnection getConnection(URL url, String method, String ctype, Proxy proxy) throws IOException {
+        private static HttpURLConnection getConnection(URL url, String method, String ctype, DynamicJDKProxy proxy) throws IOException {
             HttpURLConnection conn = null;
             if ("https".equals(url.getProtocol())) {
                 HttpsURLConnection connHttps = null;
