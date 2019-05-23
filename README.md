@@ -24,11 +24,11 @@
   *     com.design.learn.wx  直接入了获取token,只是一个简单的小demo,没有人家开源的写的好，只是自己练练手而已
    
  ## java 动态代理
-  *     com.design.learn.proxy    cglib和JDKProxy区别  cglib MethodInterceptor对实现该类的方法有效  JDKProxy实现的是InvocationHandler 并且只对接口有效 注意参数 里面还存在spring动态代理的坑
+  *     com.design.learn.proxy    cglib和JDKProxy区别  cglib MethodInterceptor对实现该类的方法有效  JDKProxy实现的是InvocationHandler 并且只对接口有效 注意参数 里面还存在spring动态代理的坑 (事物嵌套问题) 
   
   
      
  ## **新增Spring bean生命周期相关**
-    *     com.design.learn.springbean
+  *     com.design.learn.springbean
  
 
