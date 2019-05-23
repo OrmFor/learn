@@ -1,4 +1,4 @@
-package com.design.learn.thread.blockQueue;
+package com.design.learn.thread.blockqueue;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;

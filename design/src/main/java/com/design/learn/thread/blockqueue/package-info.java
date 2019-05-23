@@ -21,9 +21,9 @@
  *              drainTo(Collection<? super E>, int) : int
  *
  *              使用正确例子：
- *              BlockingQueue blockQueue = new BlockingQueue();
- *              blockQueue.put(i);//该方法是往blockQueue里面添加数据
- *              blockQueue.take(i);//
+ *              BlockingQueue blockqueue = new BlockingQueue();
+ *              blockqueue.put(i);//该方法是往blockQueue里面添加数据
+ *              blockqueue.take(i);//
  *              如果使用poll会出现错误，如下所示
  *              	[当前执行线程consumer]:从队列中取出数字：null
  * 					[当前执行线程consumer]:从队列中取出数字：0
@@ -47,4 +47,4 @@
  * 					[当前执行线程provider]:往队列中增加数字：9
  *
 **/
-package com.design.learn.thread.blockQueue;
+package com.design.learn.thread.blockqueue;

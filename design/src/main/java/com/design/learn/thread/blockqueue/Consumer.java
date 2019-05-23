@@ -1,9 +1,7 @@
-package com.design.learn.thread.blockQueue;
+package com.design.learn.thread.blockqueue;
 
 import java.text.MessageFormat;
-import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.TimeUnit;
 
 public class Consumer implements Runnable {
 
