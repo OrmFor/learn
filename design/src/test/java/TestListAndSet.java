@@ -20,7 +20,7 @@ public class TestListAndSet {
        list.add(1);
        list.add(2);
        LinkedList linkedList = new LinkedList(list);
-
+      // HashMap
     }
 
 

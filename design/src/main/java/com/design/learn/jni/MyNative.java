@@ -9,7 +9,7 @@ public class MyNative {
     private native void add( int i, int b);//定义本地方法
 
     static {
-        System.loadLibrary("MyNative");//静态加载MyNative.dll
+        System.loadLibrary("MyNative");//静态加载MyNative.dll  dll文件里面的函数要和testNidAdd()方法一致
     }
 
     public static void main(String[] args) {

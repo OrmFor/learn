@@ -6,7 +6,7 @@ com.de-sign.learn
 ├── basejava -- java基础
 |    ├── InitDemo -- 类加载(new 关键字引出的数据加载)
 |    ├── rbtree -- 红黑树
-|    ├── regerance -- 四种引用(强引用，软引用，弱引用，虚引用)
+|    └── regerance -- 四种引用(强引用，软引用，弱引用，虚引用)
 ├── ddos -- 模拟ddos攻击
 ├── jni -- jni调用
 ├── oom -- 模拟内存溢出(在resource下有配置文件，当发生oom时可以保存dump)
@@ -22,7 +22,7 @@ com.de-sign.learn
 |    ├── blockqueue -- 阻塞队列的使用
 |    ├── callable -- 利用线程池执行有返回值的线程(实现Callable)
 |    ├── deathlock -- 死锁(4要素  1.互斥 2.请求和保持请求 3.不可剥夺 4.环路等待)
-|    ├── future -- 线程futrue
+|    └── future -- 线程futrue
 ├── tomcatdemo -- 手写一个超级简易的tomcat(Servlet,Request,Response)
 └──  wx -- 简单的微信获取token(想用设计模式，没用好，作废烂尾，可以参考别人的优秀代码)
 
@@ -52,6 +52,7 @@ com.de-sign.learn
   ``` 
     com.design.learn.thread   
     包括：阻塞队列、callable、死锁、future  
+    SimpleDateFormat线程不安全 ，本质原因是共享Clandar 必要时创建局部变量或者使用ThreadLocal保证线程安全
   ```
  ## **java tomcatdemo**  
   ``` lua 
