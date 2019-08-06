@@ -19,7 +19,7 @@ public class Main {
         // 其泛型为其中存放的引用要指向的对象类型
         ReferenceQueue<Object> referenceQueue = new ReferenceQueue<>();
 
-        // 强引用测试
+        // 强引用测试  一般是new出来的，最常见的就是强引用
         void testStrongReference() {
             ArrayList<byte[]> strongReferences = new ArrayList<>();
             try {
