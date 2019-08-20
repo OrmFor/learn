@@ -47,7 +47,7 @@ public class RedisThread implements Runnable {
     }
 
 
-    //打印日志
+    //打印日志日志在target class下面
     private synchronized void print(String str) {
         Class clazz = RedisMsTest.class;
         URL url = clazz.getResource("/");

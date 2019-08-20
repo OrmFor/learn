@@ -15,6 +15,9 @@ import static com.design.learn.thread.threadpool.ThreadSizeConstant.THREAD_LOOP_
  *                               long keepAliveTime, 空闲线程最大可存活时间
  *                               TimeUnit unit, 单位
  *                               BlockingQueue<Runnable> workQueue 阻塞队列
+ *                               ThreadFactory 线程工厂
+ *                               RejectedExecutionHandler handler 任务拒绝处理器，用于降级处理
+ *
  */
 public class NewCachedThreadPoolDemo {
 

@@ -2,6 +2,14 @@ package com.design.learn.thread.callable;
 
 import java.util.concurrent.*;
 
+
+/**
+* @Author wwy
+* @Description CallAble和Future 一起使用
+* @Date 9:57 2019/8/9
+* @Param
+* @return
+**/
 public class TestCallable {
 
     public static void main(String[] args){

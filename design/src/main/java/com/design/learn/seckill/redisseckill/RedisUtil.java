@@ -42,7 +42,7 @@ public class RedisUtil {
 			jedisPoolConfig.setMaxWaitMillis(1000 * 50);
 			// 表示从连接池中获取连接时，先测试连接是否可用
 			jedisPoolConfig.setTestOnBorrow(true);
-			jedisPool = new JedisPool(jedisPoolConfig, HOST, PORT,1000,"foobared");
+			jedisPool = new JedisPool(jedisPoolConfig, HOST, PORT,1000);
 		}
 
 	}
