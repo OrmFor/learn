@@ -2,7 +2,7 @@ package com.design.learn.oom;
 
 import java.util.ArrayList;
 
-//-Xms10M -Xmx10M -Xmn10M -XX:+PrintGC
+//-Xms10M -Xmx10M -Xmn10M -XX:+PrintGC -XX:+HeapDumpOnOutOfMemoryError 打印日志
 public class HeapOOM {
 
     public void newObject() {

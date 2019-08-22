@@ -1,0 +1,91 @@
+2019-08-22 10:31:20
+Full thread dump Java HotSpot(TM) 64-Bit Server VM (25.112-b15 mixed mode):
+
+"NettythreadDeathWatcher-2-1" #18 daemon prio=1 os_prio=-2 tid=0x000000001a8e9800 nid=0x4634 waiting on condition [0x000000001bf9e000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at io.netty.util.ThreadDeathWatcher$Watcher.run(ThreadDeathWatcher.java:152)
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138)
+	at java.lang.Thread.run(Thread.java:745)
+
+"DestroyJavaVM" #16 prio=5 os_prio=0 tid=0x0000000002886800 nid=0x6f0 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"JPS event loop" #11 prio=5 os_prio=0 tid=0x0000000017cba800 nid=0x327c runnable [0x000000001760e000]
+   java.lang.Thread.State: RUNNABLE
+	at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll0(Native Method)
+	at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll(WindowsSelectorImpl.java:296)
+	at sun.nio.ch.WindowsSelectorImpl$SubSelector.access$400(WindowsSelectorImpl.java:278)
+	at sun.nio.ch.WindowsSelectorImpl.doSelect(WindowsSelectorImpl.java:159)
+	at sun.nio.ch.SelectorImpl.lockAndDoSelect(SelectorImpl.java:86)
+	- locked <0x00000000f5723260> (a io.netty.channel.nio.SelectedSelectionKeySet)
+	- locked <0x00000000f5723278> (a java.util.Collections$UnmodifiableSet)
+	- locked <0x00000000f57231e0> (a sun.nio.ch.WindowsSelectorImpl)
+	at sun.nio.ch.SelectorImpl.select(SelectorImpl.java:97)
+	at io.netty.channel.nio.SelectedSelectionKeySetSelector.select(SelectedSelectionKeySetSelector.java:62)
+	at io.netty.channel.nio.NioEventLoop.select(NioEventLoop.java:752)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:408)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858)
+	at java.lang.Thread.run(Thread.java:745)
+
+"Service Thread" #10 daemon prio=9 os_prio=0 tid=0x000000001686f800 nid=0x3e40 runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C1 CompilerThread3" #9 daemon prio=9 os_prio=2 tid=0x0000000016847800 nid=0x501c waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread2" #8 daemon prio=9 os_prio=2 tid=0x0000000016849800 nid=0x4690 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread1" #7 daemon prio=9 os_prio=2 tid=0x0000000016845000 nid=0x4b68 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread0" #6 daemon prio=9 os_prio=2 tid=0x00000000167f5800 nid=0x2538 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Attach Listener" #5 daemon prio=5 os_prio=2 tid=0x00000000167f4000 nid=0x5460 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Signal Dispatcher" #4 daemon prio=9 os_prio=2 tid=0x00000000167f3000 nid=0x5618 runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Finalizer" #3 daemon prio=8 os_prio=1 tid=0x00000000167d0800 nid=0x4e30 in Object.wait() [0x0000000016caf000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	- waiting on <0x00000000f5740a20> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:143)
+	- locked <0x00000000f5740a20> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:164)
+	at java.lang.ref.Finalizer$FinalizerThread.run(Finalizer.java:209)
+
+"Reference Handler" #2 daemon prio=10 os_prio=2 tid=0x00000000148bd800 nid=0x3068 in Object.wait() [0x00000000167ae000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	- waiting on <0x00000000f5728960> (a java.lang.ref.Reference$Lock)
+	at java.lang.Object.wait(Object.java:502)
+	at java.lang.ref.Reference.tryHandlePending(Reference.java:191)
+	- locked <0x00000000f5728960> (a java.lang.ref.Reference$Lock)
+	at java.lang.ref.Reference$ReferenceHandler.run(Reference.java:153)
+
+"VM Thread" os_prio=2 tid=0x00000000148b9800 nid=0x1834 runnable 
+
+"GC task thread#0 (ParallelGC)" os_prio=0 tid=0x000000000289c800 nid=0x3e2c runnable 
+
+"GC task thread#1 (ParallelGC)" os_prio=0 tid=0x000000000289e000 nid=0x2e78 runnable 
+
+"GC task thread#2 (ParallelGC)" os_prio=0 tid=0x00000000028a0800 nid=0x3464 runnable 
+
+"GC task thread#3 (ParallelGC)" os_prio=0 tid=0x00000000028a2000 nid=0x2aec runnable 
+
+"GC task thread#4 (ParallelGC)" os_prio=0 tid=0x00000000028a4800 nid=0x25a8 runnable 
+
+"GC task thread#5 (ParallelGC)" os_prio=0 tid=0x00000000028a5800 nid=0x10f0 runnable 
+
+"GC task thread#6 (ParallelGC)" os_prio=0 tid=0x00000000028a8800 nid=0x1b0 runnable 
+
+"GC task thread#7 (ParallelGC)" os_prio=0 tid=0x00000000028aa000 nid=0x2560 runnable 
+
+"VM Periodic Task Thread" os_prio=2 tid=0x0000000016952800 nid=0x12ec waiting on condition 
+
+JNI global references: 301
+

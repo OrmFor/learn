@@ -1,6 +1,5 @@
 package com.design.learn.sort;
 
-import java.util.HashMap;
 import java.util.Scanner;
 
 /**

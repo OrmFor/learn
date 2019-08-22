@@ -16,4 +16,13 @@ public class TestDeathLock {
         new Thread(m).start();
 
     }
+
+    public static void main(String[] args){
+        Object goods = new Object();
+        Object money = new Object();
+        Goods g = new Goods(goods,money);
+        Money m = new Money(goods,money);
+        new Thread(g).start();
+        new Thread(m).start();
+    }
 }
