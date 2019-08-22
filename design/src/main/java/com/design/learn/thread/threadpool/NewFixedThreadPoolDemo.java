@@ -16,9 +16,17 @@ public class NewFixedThreadPoolDemo {
         for(int i = 0 ; i < THREAD_LOOP_SIZE ; i++) {
             executorService.submit(() -> {
                 System.out.println(Thread.currentThread().getName());
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             });
         }
+        System.out.println(111);
         executorService.shutdown();
+
+
     }
 
 

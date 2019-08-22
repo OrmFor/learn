@@ -12,7 +12,7 @@ import java.util.concurrent.*;
 **/
 public class TestCallable {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
         ExecutorService executor = Executors.newFixedThreadPool(3);
         CallableTask task1 = new CallableTask("1");
         CallableTask task2 = new CallableTask("2");
@@ -21,6 +21,11 @@ public class TestCallable {
         Future<Integer> reslut1 = executor.submit(task1);
         Future<Integer> reslut2 = executor.submit(task2);
         Future<Integer> reslut3 = executor.submit(task3);
+
+        FutureTask<Integer> task = new FutureTask<>(task1);
+        new Thread(task).start();
+        Integer integer = task.get();
+        System.out.println(integer);
 
         executor.shutdown();
 

@@ -70,6 +70,6 @@ public class Main {
 
     public static void main(String[] args) {
         ReferenceTest test = new ReferenceTest();
-        test.testPhantomReference();
+        test.testStrongReference();
     }
 }
