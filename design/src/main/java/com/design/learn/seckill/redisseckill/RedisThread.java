@@ -1,5 +1,7 @@
 package com.design.learn.seckill.redisseckill;
 
+import com.design.learn.seckill.redisseckill.RedisMsTest;
+import com.design.learn.seckill.redisseckill.RedisUtil;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.Transaction;

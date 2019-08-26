@@ -17,27 +17,6 @@
         <!-- <dependency> <groupId>org.quartz-scheduler</groupId> <artifactId>quartz</artifactId>
             </dependency> -->
         <!-- jfinal -->
-
-
-        <dependency>
-            <groupId>cc.s2m.web.utils</groupId>
-            <artifactId>webUtils</artifactId>
-            <version>20160314-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>commons-collections</artifactId>
-                    <groupId>commons-collections</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jackson-core</artifactId>
-                    <groupId>com.fasterxml.jackson.core</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jackson-annotations</artifactId>
-                    <groupId>com.fasterxml.jackson.core</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
         <!--mongodb-->
         <dependency>
             <groupId>org.mongodb</groupId>
@@ -62,6 +41,26 @@
 
 
         <!--mongodb end-->
+
+        <dependency>
+            <groupId>cc.s2m.web.utils</groupId>
+            <artifactId>webUtils</artifactId>
+            <version>20160314-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-collections</artifactId>
+                    <groupId>commons-collections</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-core</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-annotations</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

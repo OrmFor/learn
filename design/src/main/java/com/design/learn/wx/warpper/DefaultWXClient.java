@@ -2,6 +2,7 @@ package com.design.learn.wx.warpper;
 
 import com.design.learn.wx.domain.WXPayDomain;
 import com.design.learn.wx.domain.WXPayDomainSimpleImpl;
+import com.design.learn.wx.warpper.WXClientAdapter;
 import com.design.learn.wx.wxconstant.WXPayConstants;
 
 import java.io.ByteArrayInputStream;

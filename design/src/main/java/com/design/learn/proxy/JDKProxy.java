@@ -1,5 +1,7 @@
 package com.design.learn.proxy;
 
+import com.design.learn.proxy.CustomAspect;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;

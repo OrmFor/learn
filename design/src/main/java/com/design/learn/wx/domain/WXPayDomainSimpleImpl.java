@@ -1,6 +1,7 @@
 package com.design.learn.wx.domain;
 
 import com.design.learn.wx.config.WXPayConfig;
+import com.design.learn.wx.domain.WXPayDomain;
 import com.design.learn.wx.wxconstant.WXPayConstants;
 import org.apache.http.conn.ConnectTimeoutException;
 

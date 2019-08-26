@@ -1,3 +1,4 @@
+package com.design.learn.mongodb;/*
 package com.design.learn.mongodb;
 
 import com.mongodb.MongoClient;
@@ -22,11 +23,13 @@ public class SearchMongoDb {
             System.out.println("集合 test 选择成功");
 
             //检索所有文档
-            /**
+            */
+/**
              * 1. 获取迭代器FindIterable<Document>
              * 2. 获取游标MongoCursor<Document>
              * 3. 通过游标遍历检索出的文档集合
-             * */
+             * *//*
+
             FindIterable<Document> findIterable = collection.find();
             MongoCursor<Document> mongoCursor = findIterable.iterator();
             while (mongoCursor.hasNext()) {
@@ -39,3 +42,4 @@ public class SearchMongoDb {
     }
 
 }
+*/

@@ -1,4 +1,4 @@
-/*
+package com.design.learn.wx.util;/*
 package com.design.learn.wx.util;
 
 import org.apache.commons.fileupload.FileItem;

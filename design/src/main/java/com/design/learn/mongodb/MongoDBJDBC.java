@@ -1,3 +1,4 @@
+package com.design.learn.mongodb;/*
 package com.design.learn.mongodb;
 
 import com.mongodb.DB;
@@ -23,11 +24,13 @@ public class MongoDBJDBC {
             MongoCollection<Document> collection = mongoDatabase.getCollection("test");
             System.out.println("集合 test 选择成功");
             //插入文档
-            /**
+            */
+/**
              * 1. 创建文档 org.bson.Document 参数为key-value的格式
              * 2. 创建文档集合List<Document>
              * 3. 将文档集合插入数据库集合中 mongoCollection.insertMany(List<Document>) 插入单个文档可以用 mongoCollection.insertOne(Document)
-             * */
+             * *//*
+
             Document document = new Document("title", "MongoDB").
                     append("description", "database").
                     append("likes", 100).
@@ -42,3 +45,4 @@ public class MongoDBJDBC {
 
     }
 }
+*/

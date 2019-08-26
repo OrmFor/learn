@@ -1,5 +1,7 @@
 package com.design.learn.thread.deathlock;
 
+import com.design.learn.thread.deathlock.Goods;
+import com.design.learn.thread.deathlock.Money;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

@@ -1,4 +1,4 @@
-//package com.design.learn.wx.parser.json;
+package com.design.learn.wx.parser.json;//package com.design.learn.wx.parser.json;
 //
 //import com.alipay.api.AlipayApiException;
 //import com.alipay.api.AlipayParser;

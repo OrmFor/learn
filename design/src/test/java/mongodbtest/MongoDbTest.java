@@ -10,7 +10,7 @@ import org.bson.Document;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class MongoDbTest extends BaseTest {
+public class MongoDbTest /*extends BaseTest*/ {
 
     @Autowired
     private MongoClient mongoClient;

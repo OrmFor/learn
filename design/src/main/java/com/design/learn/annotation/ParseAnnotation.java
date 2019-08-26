@@ -1,6 +1,7 @@
 package com.design.learn.annotation;
 
 import com.design.learn.LoadClass;
+import com.design.learn.annotation.MethodInfo;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;

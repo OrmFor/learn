@@ -1,5 +1,6 @@
 package com.design.learn.thread.future;
 
+import com.design.learn.thread.future.Client;
 import com.design.learn.thread.future.service.Data;
 
 public class Test {

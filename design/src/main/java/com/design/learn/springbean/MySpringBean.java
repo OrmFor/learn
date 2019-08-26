@@ -7,6 +7,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
 /**
  * @ClassName: MySpringBean
@@ -14,7 +15,7 @@ import org.springframework.context.ApplicationContextAware;
  * @author: wwy
  * @date: 2019年5月22日 上午10:12:37
  */
-//@Component("MySpringBean")
+@Component("MySpringBean")
 public class MySpringBean implements BeanNameAware, BeanFactoryAware,ApplicationContextAware, InitializingBean, BeanClassLoaderAware {
 
     private ApplicationContext applicationContext;

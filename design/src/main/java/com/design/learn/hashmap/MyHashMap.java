@@ -11,7 +11,7 @@ import java.util.List;
 * @Param
 * @return
 **/
-public class MyHashMap<K,V> implements DIYMap<K,V> {
+public class MyHashMap<K,V> implements com.design.learn.hashmap.DIYMap<K,V> {
 
     //初始化数组长度
     private static final int DEFAULT_INITIAL_CAPACITY = 1<<4;
@@ -152,7 +152,7 @@ public class MyHashMap<K,V> implements DIYMap<K,V> {
     }
 
 
-    static class MyEntry<K,V> implements DIYMap.Entry<K,V>{
+    static class MyEntry<K,V> implements Entry<K,V>{
 
         K key;
         V value;

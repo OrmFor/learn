@@ -1,4 +1,4 @@
-//package com.design.learn.wx.parser.json;
+package com.design.learn.wx.parser.json;//package com.design.learn.wx.parser.json;
 //
 //import com.design.learn.wx.bean.base.WxpayRequest;
 //import com.design.learn.wx.bean.base.WxpayResponse;

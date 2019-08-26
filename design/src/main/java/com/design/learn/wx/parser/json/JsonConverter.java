@@ -1,4 +1,4 @@
-//package com.design.learn.wx.parser.json;
+package com.design.learn.wx.parser.json;//package com.design.learn.wx.parser.json;
 //
 //package com.Wxpay.api.internal.parser.json;
 //

@@ -1,5 +1,7 @@
 package com.design.learn.proxy.springproxy;
 
+import com.design.learn.proxy.springproxy.UserService;
+
 public class UserServiceImpl implements UserService {
     @Override
     public void test1() {

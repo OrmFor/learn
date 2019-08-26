@@ -1,5 +1,6 @@
 package com.design.learn.proxy;
 
+import com.design.learn.proxy.CustomAspect;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;

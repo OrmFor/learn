@@ -1,5 +1,8 @@
 package com.design.learn.thread.blockqueue;
 
+import com.design.learn.thread.blockqueue.Consumer;
+import com.design.learn.thread.blockqueue.Provider;
+
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 

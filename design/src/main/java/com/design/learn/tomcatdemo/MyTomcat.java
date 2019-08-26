@@ -1,5 +1,7 @@
 package com.design.learn.tomcatdemo;
 
+import com.design.learn.tomcatdemo.MyRequest;
+import com.design.learn.tomcatdemo.MyResponse;
 import com.design.learn.tomcatdemo.servlet.MyServlet;
 import com.design.learn.tomcatdemo.servlet.ServletMapping;
 import com.design.learn.tomcatdemo.servlet.ServletMappingConfig;

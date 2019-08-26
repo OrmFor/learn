@@ -1,5 +1,7 @@
 package com.design.learn.wx.wxconstant;
 
+import com.design.learn.wx.wxconstant.WXConstants;
+
 /**
  * 微信基础URL链接
  */

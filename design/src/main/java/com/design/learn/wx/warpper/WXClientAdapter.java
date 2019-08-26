@@ -7,6 +7,7 @@ import com.design.learn.wx.bean.wxrequest.WxpayAccessTokenRequest;
 import com.design.learn.wx.bean.wxrespone.WxpayAccessTokenResponse;
 import com.design.learn.wx.bean.wxrespone.WxpayJsTicketResponse;
 import com.design.learn.wx.config.WXPayConfig;
+import com.design.learn.wx.warpper.WXClient;
 import com.design.learn.wx.wxconstant.WXPayConstants;
 import com.design.learn.wx.wxconstant.WXURL;
 import org.springframework.web.client.RestTemplate;

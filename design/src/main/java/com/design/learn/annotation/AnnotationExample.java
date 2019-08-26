@@ -1,5 +1,8 @@
 package com.design.learn.annotation;
 
+import com.design.learn.annotation.MethodInfo;
+import com.design.learn.annotation.ParseAnnotation;
+
 public class AnnotationExample {
 
     @MethodInfo(author = "wwy",describe = "测试一下",version = "1.0.1")

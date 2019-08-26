@@ -1,5 +1,10 @@
 package com.design.learn.proxy.springproxy;
 
+import com.design.learn.proxy.springproxy.DynamicCGLIBProxy;
+import com.design.learn.proxy.springproxy.DynamicJDKProxy;
+import com.design.learn.proxy.springproxy.UserService;
+import com.design.learn.proxy.springproxy.UserServiceImpl;
+
 public class TestProxyDemo {
 
     public static void main(String[] args) {

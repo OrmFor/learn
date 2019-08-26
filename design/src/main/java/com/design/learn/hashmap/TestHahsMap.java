@@ -1,5 +1,7 @@
 package com.design.learn.hashmap;
 
+import com.design.learn.hashmap.MyHashMap;
+
 public class TestHahsMap {
     public static void main(String[] args){
           MyHashMap<String,Integer> map = new MyHashMap<>();

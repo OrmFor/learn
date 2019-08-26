@@ -1,4 +1,4 @@
-//package com.design.learn.wx.mapping;
+package com.design.learn.wx.mapping;//package com.design.learn.wx.mapping;
 //
 //import com.design.learn.wx.bean.base.WxpayRequest;
 //import com.design.learn.wx.bean.base.WxpayResponse;
