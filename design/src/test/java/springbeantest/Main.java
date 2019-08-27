@@ -14,7 +14,7 @@ public class Main extends BaseTest {
     @Test
     public void test(){
         //ApplicationContext ac = new FileSystemXmlApplicationContext("src/main/resources/application.xml");
-        ApplicationContext ac= new ClassPathXmlApplicationContext("application.xml");
+        ApplicationContext ac= new ClassPathXmlApplicationContext("spring-application.xml");
         ac.getBean("mySpringBean");
     }
 }
