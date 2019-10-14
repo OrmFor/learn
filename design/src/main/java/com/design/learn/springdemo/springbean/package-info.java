@@ -50,4 +50,4 @@
  *
  *
  */
-package com.design.learn.springbean;
+package com.design.learn.springdemo.springbean;

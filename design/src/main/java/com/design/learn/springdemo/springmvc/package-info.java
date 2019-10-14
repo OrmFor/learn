@@ -18,4 +18,4 @@
  *
 **/
 
-package com.design.learn.springmvc;
+package com.design.learn.springdemo.springmvc;

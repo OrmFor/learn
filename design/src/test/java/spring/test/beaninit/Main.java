@@ -1,16 +1,17 @@
-package springbeantest;
+package spring.test.beaninit;
 
 import base.BaseTest;
-import com.design.learn.springdemo.factorybeandemo.SpringFactoryBeanDemo;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-public class Main extends BaseTest {
+//@ContextConfiguration(locations = {"classpath*:spring-application.xml"})
+public class Main {//extends BaseTest {
   /*  @Autowired
     private MySpringBeanPostProcessor mySpringBeanPostProcessor;*/
    /* @Autowired
@@ -22,7 +23,7 @@ public class Main extends BaseTest {
         ApplicationContext ac = new ClassPathXmlApplicationContext("spring-application.xml");
         ClassPathResource cr = new ClassPathResource("spring-application.xml");
         InputStream inputStream = cr.getInputStream();
-        // ac.getBean("mySpringBean");
-        ac.getBean("carFactoryBean");
+         ac.getBean("mySpringBean");
+        //ac.getBean("carFactoryBean");
     }
 }

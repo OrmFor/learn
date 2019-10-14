@@ -8,13 +8,15 @@ public class DdosTest {
 
     public static void main(String[] args) {
         //利用线程池创建1000个线程
-      //  ExecutorService es = Executors.newFixedThreadPool(1);
+       ExecutorService es = Executors.newFixedThreadPool(10000);
         Client ddos = new Client();
         Thread thread = new Thread(ddos);
         thread.start();
-        /*for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 1000; i++) {
             es.execute(thread);
-        }*/
+        }
+
+        es.shutdown();
     }
 }
 

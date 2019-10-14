@@ -1,4 +1,4 @@
-package com.design.learn.springbean;
+package com.design.learn.springdemo.springbean;
 
 
 import org.apache.logging.log4j.LogManager;

