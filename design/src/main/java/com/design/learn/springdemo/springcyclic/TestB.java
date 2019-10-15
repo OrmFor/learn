@@ -2,7 +2,7 @@ package com.design.learn.springdemo.springcyclic;
 
 import org.springframework.stereotype.Component;
 
-@Component
+
 public class TestB {
 
     private TestC testC;
