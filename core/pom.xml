@@ -303,6 +303,11 @@
             <version>7.0.77</version>
             <scope>provided</scope> <!-- 私有防止打war包时把这个文件打入，放进tomcat里面报错冲突 -->
         </dependency>
+        <dependency>
+            <groupId>dance</groupId>
+            <artifactId>Distributed-Kit</artifactId>
+            <version>0.0.1</version>
+        </dependency>
     </dependencies>
 
 </project>
