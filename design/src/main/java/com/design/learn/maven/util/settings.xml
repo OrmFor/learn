@@ -49,10 +49,10 @@ under the License.
   <!-- localRepository
    | The path to the local repository maven will use to store artifacts.
    |
-   | Default: ~/.m2/repository
+   | Default: ${user.home}/.m2/repository
   <localRepository>/path/to/local/repo</localRepository>
   -->
-<localRepository>E:\repository</localRepository>
+	<localRepository>E:\repository</localRepository>
   <!-- interactiveMode
    | This will determine whether maven prompts you when it needs input. If set to false,
    | maven will use a sensible default value, perhaps based on some other setting, for
@@ -122,22 +122,6 @@ under the License.
       <password>repopwd</password>
     </server>
     -->
-	
-
-	   <server>
-      <id>releases</id>
-      <username>admin</username>
-      <password>admin123</password>
-    </server>
-    <server>
-      <id>snapshots</id>
-      <username>admin</username>
-      <password>admin123</password>
-    </server>
-	
-
-	  
-   
     
     <!-- Another sample, using keys to authenticate.
     <server>
@@ -146,8 +130,19 @@ under the License.
       <passphrase>optional; leave empty if not used.</passphrase>
     </server>
     -->
+    <server>
+    	<id>nexus-releases</id>
+    	<username>admin</username>
+    	<password>admin123</password>
+  	</server>
+	
+	  <server>
+    	 <id>nexus-snapshots</id>
+    	<username>admin</username>
+    	<password>admin123</password>
+  	</server>
   </servers>
-
+  
   <!-- mirrors
    | This is a list of mirrors to be used in downloading artifacts from remote repositories.
    | 
@@ -160,19 +155,6 @@ under the License.
    | server for that repository.
    |-->
   <mirrors>
-    <!-- mirror
-     | Specifies a repository mirror site to use instead of a given repository. The repository that
-     | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used
-     | for inheritance and direct lookup purposes, and must be unique across the set of mirrors.
-     |
-    <mirror>
-      <id>mirrorId</id>
-      <mirrorOf>repositoryId</mirrorOf>
-      <name>Human Readable Name for this Mirror.</name>
-      <url>http://my.repository.com/repo/path</url>
-    </mirror>
-     -->
-
     <mirror>
       <id>alimaven</id>
       <name>aliyun maven</name>
@@ -187,11 +169,13 @@ under the License.
       <mirrorOf>repo</mirrorOf>        
     </mirror>
   <mirror>
-      <id>devS2mCc</id>
+      <id>nexus</id>
       <mirrorOf>*</mirrorOf>
-      <url>http://192.168.31.45:8081/nexus/content/groups/public/</url>
+      <url>http://132.232.14.40:8081/#browse/browse:maven-public</url>
+	  
     </mirror> 
   </mirrors>
+
   
   <!-- profiles
    | This is a list of profiles which can be activated in a variety of ways, and which can modify
@@ -214,8 +198,8 @@ under the License.
    |       variables for plugins in the POM.
    |
    |-->
- <!-- <profiles>
-     profile
+  
+    <!-- profile
      | Specifies a set of introductions to the build process, to be activated using one or more of the
      | mechanisms described above. For inheritance purposes, and to activate profiles via <activatedProfiles/>
      | or the command line, profiles have to have an ID that is unique.
@@ -244,30 +228,6 @@ under the License.
       </repositories>
     </profile>
     -->
-	
-	<profiles>
-     <profile>
-			<id>devS2mCc</id>
-			<repositories>
-				<repository>
-					<id>nexus_devS2mCc</id>
-					<name>nexus repository devS2mCc</name>
-					<url>http://192.168.31.45:8081/nexus/content/groups/public/</url>
-					<releases>
-					<enabled>true</enabled>
-					</releases>
-					<snapshots>
-					<enabled>true</enabled>
-					</snapshots>
-				</repository>
-			</repositories>
-		</profile>
-  </profiles>
-
-
-  <activeProfiles>
-    <activeProfile>devS2mCc</activeProfile>
-  </activeProfiles> 
 
     <!--
      | Here is another profile, activated by the system property 'target-env' with a value of 'dev',
@@ -302,8 +262,62 @@ under the License.
         <tomcatPath>/path/to/tomcat/instance</tomcatPath>
       </properties>
     </profile>
-    
-  </profiles>-->
+    -->
+	  
+<profiles>
+     <!--<profile>
+			<id>nexus</id>
+			<repositories>
+				<repository>
+					<id>nexus_devS2mCc</id>
+					<name>nexus repository devS2mCc</name>
+					<url>http://132.232.14.40:8081/repository/maven-public/</url>
+					<releases>
+					<enabled>true</enabled>
+					</releases>
+					<snapshots>
+					<enabled>true</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
+		</profile>-->
+		
+		
+	<!--	<profile>
+        <repositories>
+            <repository>
+                <releases>
+                    <enabled>true</enabled>
+                </releases>
+                <snapshots>
+                    <enabled>false</enabled>
+                </snapshots>
+                <id>nexus-releases</id>
+                <name>release</name>
+                <url>http://132.232.14.40:8081/repository/maven-releases/</url>
+            </repository>
+            <repository>
+                <releases>
+                    <enabled>false</enabled>
+                </releases>
+                <snapshots>
+                    <enabled>true</enabled>
+                </snapshots>
+                <id>nexus-snapshots</id>
+                <name>libs-snapshot</name>
+                <url>http://132.232.14.40:8081/repository/maven-snapshots/</url>
+            </repository>
+        </repositories>
+        <id>nexus</id>
+    </profile> -->
+		
+  </profiles>
+
+
+   <!--<activeProfiles>
+    <activeProfile>nexus</activeProfile>
+  </activeProfiles> 
+ -->
 
   <!-- activeProfiles
    | List of profiles that are active for all builds.

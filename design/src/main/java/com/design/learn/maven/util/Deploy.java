@@ -1,5 +1,4 @@
 package com.design.learn.maven.util;
-import sun.tools.jar.resources.jar;
 
 import java.io.*;
 import java.util.concurrent.ExecutorService;
@@ -30,13 +29,24 @@ public class Deploy {
             "deploy:deploy-file " +
            // "-Durl=http://192.168.31.45:8081/nexus/content/repositories/releases " +
            // "-DrepositoryId=releases " +
-            "-DgeneratePom=false";
+            " -DgeneratePom=false " /*+
+            " -DuseUniqueVersions=false "*/;
 
     public static final Pattern DATE_PATTERN = Pattern.compile("-[\\d]{8}\\.[\\d]{6}-");
 
     public static final Runtime CMD = Runtime.getRuntime();
 
     private static final String SNAPSHOT = "SNAPSHOT";
+
+    private static final String SNAPSHOTURL = " -Durl=http://132.232.14.40:8081/repository/maven-snapshots/ " +
+            " -DrepositoryId=nexus-snapshots ";
+
+    private static final String RELEASESURL = " -Durl=http://132.232.14.40:8081/repository/maven-releases/ " +
+            " -DrepositoryId=nexus-releases ";
+
+/*    private static final String REPOSITORYID_SERVER_SANPSHOTS = " -DrepositoryId=nexus-snapshots ";
+
+    private static final String REPOSITORYID_SERVER_RELEASES = " -DrepositoryId=nexus-releases ";*/
 
     public static final Writer ERROR;
 
@@ -54,7 +64,7 @@ public class Deploy {
     }
 
     public static void main(String[] args) {
-        deploy(new File("F:\\repository").listFiles());
+        deploy(new File("F:\\repository\\com\\lianpay").listFiles());
 //        if(checkArgs(args)){
 //            File file = new File(args[0]);
 //            deploy(file.listFiles());
@@ -161,12 +171,9 @@ public class Deploy {
                 cmd.append(" -Dfile=").append(pom.getAbsolutePath());
 
                 if(pom.getAbsolutePath().contains(SNAPSHOT)){
-                    cmd.append( " -Durl=http://192.168.31.45:8081/nexus/content/repositories/snapshots " +
-                            " -DrepositoryId=snapshots " );
+                    cmd.append( SNAPSHOTURL );
                 }else{
-                    cmd.append(
-                            " -Durl=http://192.168.31.45:8081/nexus/content/repositories/releases " +
-                                    " -DrepositoryId=releases " );
+                    cmd.append( RELEASESURL );
                 }
                 try {
                     System.out.println(cmd.toString());
@@ -208,12 +215,9 @@ public class Deploy {
                     //当有bundle类型时，下面的配置可以保证上传的jar包后缀为.jar
                    // System.out.println(jar.getAbsolutePath());
                     if(jar.getAbsolutePath().contains(SNAPSHOT)){
-                        cmd.append( " -Durl=http://192.168.31.45:8081/nexus/content/repositories/snapshots " +
-                                 " -DrepositoryId=snapshots " );
+                        cmd.append( SNAPSHOTURL );
                     }else{
-                        cmd.append(
-                         " -Durl=http://192.168.31.45:8081/nexus/content/repositories/releases " +
-                         " -DrepositoryId=releases " );
+                        cmd.append( RELEASESURL );
                     }
                     cmd.append(" -Dpackaging=jar -Dfile=").append(jar.getAbsolutePath());
                 } else {
