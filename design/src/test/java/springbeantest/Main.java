@@ -22,7 +22,7 @@ public class Main extends BaseTest {
         ApplicationContext ac = new ClassPathXmlApplicationContext("spring-application.xml");
         ClassPathResource cr = new ClassPathResource("spring-application.xml");
         InputStream inputStream = cr.getInputStream();
-        // ac.getBean("mySpringBean");
-        ac.getBean("carFactoryBean");
+         ac.getBean("mySpringBean");
+        //ac.getBean("carFactoryBean");
     }
 }

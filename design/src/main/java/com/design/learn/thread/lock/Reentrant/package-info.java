@@ -8,9 +8,9 @@
  *
  * Synchronized：非公平，悲观，独享，互斥，可重入的重量级锁
  * ReentrantLock：默认非公平但可实现公平的(构造器传true)，
- *                 悲观，独享，互斥，可重入，重量级锁。
+ *                 悲观，独享，互斥，可重入，轻量级锁。
  * ReentrantReadWriteLocK：默认非公平但可实现公平的(构造器传true)，
- *               悲观，写独享，读共享，读写，可重入，重量级锁。
+ *               悲观，写独享，读共享，读写，可重入，轻量级锁。
  *
 **/
 package com.design.learn.thread.lock.Reentrant;

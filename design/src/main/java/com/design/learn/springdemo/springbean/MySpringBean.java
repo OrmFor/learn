@@ -9,6 +9,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+
 /**
  * @ClassName: MySpringBean
  * @Description: my spring bean to test
@@ -56,5 +58,10 @@ public class MySpringBean implements BeanNameAware, BeanFactoryAware,Application
     @Override
     public void setBeanClassLoader(ClassLoader classLoader) {
         logger.info("BeanClassLoaderAware-setBeanClassLoader......");
+    }
+
+    @PostConstruct
+    public void testPost(){
+        logger.info("PostConstruct......");
     }
 }
