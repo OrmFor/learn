@@ -128,7 +128,7 @@
                     <groupId>org.springframework</groupId>
                 </exclusion>
             </exclusions>
-            <version>2.5.3</version>
+            <version>2.6.9</version>
         </dependency>
         <!-- with junit4.12 -->
         <dependency>
