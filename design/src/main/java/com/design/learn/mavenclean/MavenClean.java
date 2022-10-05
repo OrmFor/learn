@@ -6,7 +6,7 @@ public class MavenClean {
 
     public static final String UNKNOWN = "unknown";
 
-    public static final String FILE_PATH = "C:\\";
+    public static final String FILE_PATH = "F:\\repository";
 
    // public static final String SUFFIX_REMOTE = "_remote.repositories";
 
@@ -15,7 +15,7 @@ public class MavenClean {
     public static int COUNT = 0;
     public static int SUM = 0;
     public static int SUM_BLANK = 0;
-
+    public static  int i = 0;
     public static void main(String[] args) {
         deleteErrorFile(new File(FILE_PATH));
         System.out.println(COUNT+"个错误文件");
@@ -25,6 +25,7 @@ public class MavenClean {
 
 
     public static void deleteErrorFile(File file) {
+       // System.out.println(i++);
         if (file.isDirectory()) {
             if (file.getName().equals(UNKNOWN)) {
                 if (file.delete()) {
