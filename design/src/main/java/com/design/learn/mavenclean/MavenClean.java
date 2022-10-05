@@ -6,7 +6,7 @@ public class MavenClean {
 
     public static final String UNKNOWN = "unknown";
 
-    public static final String FILE_PATH = "F:\\repository";
+    public static final String FILE_PATH = "F:\\repository1";
 
    // public static final String SUFFIX_REMOTE = "_remote.repositories";
 
