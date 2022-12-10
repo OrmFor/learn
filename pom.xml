@@ -33,7 +33,7 @@
         <java-version>1.7</java-version>
         <spring-boot.version>1.5.6.RELEASE</spring-boot.version>
         <junit-version>4.12</junit-version>
-        <spring.version>4.3.12.RELEASE</spring.version>
+        <spring.version>6.0.0</spring.version>
         <jackson.version>2.8.11.1</jackson.version>
         <mysql-connector-java-version>5.1.8</mysql-connector-java-version>
         <org.mybatis-version>3.2.7</org.mybatis-version>
